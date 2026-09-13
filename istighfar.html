@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sayyidul Istighfar — Master the Best Dua</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0d1b2a;--bg2:#1b2838;--gold:#c9a84c;--gold-dim:#a08030;--text:#e0d6c2;--text-dim:#8a8070;--green:#4caf50;--radius:12px}
+body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min-height:100vh;padding:0 0 80px;overflow-x:hidden}
+.arabesque{display:flex;justify-content:center;padding:18px 0 6px}
+.arabesque svg{width:min(90vw,420px);height:auto}
+header{text-align:center;padding:12px 20px 20px}
+header h1{font-family:'Amiri',serif;font-size:clamp(1.5rem,5vw,2.2rem);color:var(--gold);margin-bottom:4px;letter-spacing:1px}
+header p{font-size:.85rem;color:var(--text-dim)}
+.controls{max-width:540px;margin:0 auto 16px;padding:0 16px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center}
+.btn-play-all{background:linear-gradient(135deg,var(--gold),#e0c060);color:var(--bg);border:none;padding:12px 28px;border-radius:30px;font-size:1rem;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 20px rgba(201,168,76,.3)}
+.btn-play-all:hover{transform:scale(1.04);box-shadow:0 6px 28px rgba(201,168,76,.45)}
+.btn-play-all:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.speed-group{display:flex;gap:0;align-items:center}
+.speed-btn{background:var(--bg2);color:var(--text-dim);border:1px solid #2a3a4a;padding:8px 14px;font-size:.8rem;cursor:pointer;font-family:'Poppins',sans-serif;transition:all .2s}
+.speed-btn:first-child{border-radius:8px 0 0 8px}
+.speed-btn:last-child{border-radius:0 8px 8px 0}
+.speed-btn.active{background:var(--gold);color:var(--bg);border-color:var(--gold);font-weight:600}
+.progress-wrap{max-width:540px;margin:0 auto 20px;padding:0 16px}
+.progress-bar-bg{background:var(--bg2);border-radius:20px;height:14px;overflow:hidden;position:relative}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--gold-dim),var(--gold));border-radius:20px;transition:width .6s cubic-bezier(.4,0,.2,1);width:0}
+.progress-text{text-align:center;font-size:.8rem;color:var(--text-dim);margin-top:6px}
+.cards{max-width:540px;margin:0 auto;padding:0 16px;display:flex;flex-direction:column;gap:14px}
+.card{background:var(--bg2);border:1px solid #1e2e3e;border-radius:var(--radius);padding:18px 16px;opacity:0;transform:translateY(20px);animation:fadeUp .5s ease forwards;position:relative;overflow:hidden;transition:border-color .3s,background .3s}
+.card.unlocked{border-left:3px solid var(--gold)}
+.card.memorized{border-left:3px solid var(--green);background:#132228}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+.card .line-num{position:absolute;top:10px;right:14px;font-size:.7rem;color:var(--text-dim);font-weight:600}
+.card .arabic{font-family:'Amiri',serif;font-size:clamp(1.3rem,5vw,1.7rem);direction:rtl;text-align:right;line-height:2;color:#f0e6d0;margin-bottom:10px;word-spacing:2px}
+.card .translit{font-size:.88rem;color:var(--gold);font-style:italic;margin-bottom:6px;line-height:1.5}
+.card .meaning{font-size:.82rem;color:var(--text-dim);line-height:1.5;margin-bottom:12px}
+.card-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn-line-play{background:var(--bg);color:var(--gold);border:1px solid var(--gold-dim);padding:6px 14px;border-radius:20px;font-size:.8rem;cursor:pointer;font-family:'Poppins',sans-serif;transition:all .2s;display:flex;align-items:center;gap:5px}
+.btn-line-play:hover{background:var(--gold);color:var(--bg)}
+.btn-line-play:disabled{opacity:.4;cursor:not-allowed}
+.btn-line-play.playing{background:var(--gold);color:var(--bg);animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,.4)}50%{box-shadow:0 0 0 8px rgba(201,168,76,0)}}
+.btn-memorized{background:transparent;color:var(--green);border:1px solid var(--green);padding:6px 14px;border-radius:20px;font-size:.8rem;cursor:pointer;font-family:'Poppins',sans-serif;transition:all .2s}
+.btn-memorized:hover{background:var(--green);color:var(--bg)}
+.btn-memorized.done{background:var(--green);color:#fff}
+.btn-reset{background:transparent;color:#e74c3c;border:1px solid #e74c3c;padding:6px 14px;border-radius:20px;font-size:.8rem;cursor:pointer;font-family:'Poppins',sans-serif;transition:all .2s;margin:20px auto 0;display:block}
+.btn-reset:hover{background:#e74c3c;color:#fff}
+.completion{text-align:center;padding:24px 16px;opacity:0;transform:scale(.9);transition:all .5s;pointer-events:none;position:fixed;inset:0;background:rgba(13,27,42,.95);z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.completion.show{opacity:1;transform:scale(1);pointer-events:all}
+.completion .big-arabic{font-family:'Amiri',serif;font-size:clamp(1.8rem,6vw,2.8rem);color:var(--gold);direction:rtl;line-height:2;margin-bottom:16px}
+.completion .big-english{font-size:1rem;color:var(--text);max-width:400px;line-height:1.6;margin-bottom:24px}
+.completion .btn-close{background:var(--gold);color:var(--bg);border:none;padding:10px 30px;border-radius:30px;font-size:1rem;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--bg2);border:1px solid var(--gold-dim);color:var(--text);padding:10px 20px;border-radius:30px;font-size:.8rem;z-index:200;transition:transform .3s;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.attribution{text-align:center;padding:20px;font-size:.7rem;color:var(--text-dim);max-width:540px;margin:0 auto}
+.topnav{max-width:540px;margin:0 auto;padding:8px 16px 0;display:flex;justify-content:space-between;align-items:center}
+.topnav a{color:var(--gold);font-size:.8rem;text-decoration:none}
+.topnav a:hover{text-decoration:underline}
+.lesson-tag{font-size:.7rem;letter-spacing:.12em;color:var(--text-dim);text-transform:uppercase}
+@media(max-width:400px){.card{padding:14px 12px}}
+</style>
+</head>
+<body>
+<div class="topnav">
+  <a href="index.html">← All duas</a>
+  <span class="lesson-tag">Lesson 1 of 2</span>
+</div>
+
+<div class="arabesque">
+<svg viewBox="0 0 400 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 25 Q50 0 100 25 T200 25 T300 25 T400 25" stroke="#c9a84c" stroke-width="1.2" fill="none" opacity=".5"/>
+<path d="M0 25 Q50 50 100 25 T200 25 T300 25 T400 25" stroke="#c9a84c" stroke-width="1.2" fill="none" opacity=".5"/>
+<circle cx="100" cy="25" r="4" fill="#c9a84c" opacity=".6"/>
+<circle cx="200" cy="25" r="5" fill="#c9a84c"/>
+<circle cx="300" cy="25" r="4" fill="#c9a84c" opacity=".6"/>
+<path d="M185 25 L200 12 L215 25 L200 38 Z" fill="none" stroke="#c9a84c" stroke-width="1"/>
+<path d="M85 25 L100 15 L115 25 L100 35 Z" fill="none" stroke="#c9a84c" stroke-width=".8" opacity=".5"/>
+<path d="M285 25 L300 15 L315 25 L300 35 Z" fill="none" stroke="#c9a84c" stroke-width=".8" opacity=".5"/>
+</svg>
+</div>
+
+<header>
+<h1>سَيِّدُ الْاسْتِغْفَارِ</h1>
+<p>Sayyidul Istighfar — The Master of Seeking Forgiveness</p>
+<p style="font-size:.7rem;margin-top:4px;color:var(--text-dim)">Sahih al-Bukhari 6306</p>
+</header>
+
+<div class="controls">
+<div class="speed-group">
+<button class="speed-btn" data-speed="0.5" onclick="setSpeed(0.5,this)">0.5×</button>
+<button class="speed-btn active" data-speed="1" onclick="setSpeed(1,this)">1×</button>
+<button class="speed-btn" data-speed="1.5" onclick="setSpeed(1.5,this)">1.5×</button>
+</div>
+<button class="btn-play-all" id="btnPlayAll" onclick="playFullDua()">🔊 Play Full Dua</button>
+</div>
+
+<div class="progress-wrap">
+<div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
+<div class="progress-text" id="progressText">0 / 7 memorized</div>
+</div>
+
+<div class="cards" id="cards"></div>
+
+<button class="btn-reset" onclick="resetProgress()">↺ Reset Progress</button>
+
+<div class="attribution">Sahih al-Bukhari 6306 · Voice generated with MiMo TTS</div>
+
+<div class="completion" id="completion">
+<div class="big-arabic">مَاشَاءَ اللَّهُ — بَارَكَ اللَّهُ فِيكَ</div>
+<div class="big-english">Masha'Allah! You have memorized Sayyidul Istighfar — the best dua for seeking forgiveness. The Prophet ﷺ said: whoever recites it with conviction and dies that day enters Paradise.</div>
+<button class="btn-close" onclick="closeCompletion()">Alhamdulillah ✓</button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const LINES = [
+  { arabic: "اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ", translit: "Allahumma anta Rabbi la ilaha illa ant", meaning: "O Allah, You are my Lord, none worthy of worship but You", audio: "audio/line_1.mp3" },
+  { arabic: "خَلَقْتَنِي وَأَنَا عَبْدُكَ", translit: "Khalaqtani wa ana abduk", meaning: "You created me and I am Your slave", audio: "audio/line_2.mp3" },
+  { arabic: "وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ", translit: "Wa ana ala ahdika wa wa'dika mastata't", meaning: "I am faithful to my covenant as much as I can", audio: "audio/line_3.mp3" },
+  { arabic: "أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ", translit: "A'udhu bika min sharri ma sana't", meaning: "I seek refuge in You from the evil I have done", audio: "audio/line_4.mp3" },
+  { arabic: "أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ", translit: "Abu'u laka bi ni'matika alaiya", meaning: "I acknowledge Your blessings upon me", audio: "audio/line_5.mp3" },
+  { arabic: "وَأَبُوءُ لَكَ بِذَنْبِي", translit: "Wa abu'u laka bidhanbi", meaning: "And I confess to You all of my sins", audio: "audio/line_6.mp3" },
+  { arabic: "فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ", translit: "Faghfir-lee fa innahu la yaghfiru adhdhunuba illa ant", meaning: "Forgive me, for none can forgive sins except You", audio: "audio/line_7.mp3" }
+];
+
+let speed = 1;
+let currentAudio = null;
+let memorized = JSON.parse(localStorage.getItem('si_memorized') || '[]');
+
+function setSpeed(s, btn) {
+  speed = s;
+  document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (currentAudio) currentAudio.playbackRate = speed;
+}
+
+function buildCards() {
+  const container = document.getElementById('cards');
+  container.innerHTML = '';
+  LINES.forEach((l, i) => {
+    const isMem = memorized.includes(i);
+    const card = document.createElement('div');
+    card.className = `card ${isMem ? 'memorized' : 'unlocked'}`;
+    card.style.animationDelay = `${i * 0.08}s`;
+    card.innerHTML = `
+      <span class="line-num">${i + 1} / 7</span>
+      <div class="arabic">${l.arabic}</div>
+      <div class="translit">${l.translit}</div>
+      <div class="meaning">${l.meaning}</div>
+      <div class="card-actions">
+        <button class="btn-line-play" id="playbtn-${i}" onclick="playLine(${i})">🔊 Play</button>
+        <button class="btn-memorized ${isMem ? 'done' : ''}" onclick="toggleMem(${i})">${isMem ? '✓ Memorized' : '☐ Mark Memorized'}</button>
+      </div>`;
+    container.appendChild(card);
+  });
+  updateProgress();
+}
+
+function updateProgress() {
+  const pct = (memorized.length / 7) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = `${memorized.length} / 7 memorized`;
+  if (memorized.length === 7) {
+    setTimeout(() => document.getElementById('completion').classList.add('show'), 400);
+  }
+}
+
+function toggleMem(idx) {
+  if (memorized.includes(idx)) memorized = memorized.filter(i => i !== idx);
+  else memorized.push(idx);
+  localStorage.setItem('si_memorized', JSON.stringify(memorized));
+  buildCards();
+}
+
+function resetProgress() {
+  if (!confirm('Reset all memorization progress?')) return;
+  memorized = [];
+  localStorage.setItem('si_memorized', '[]');
+  buildCards();
+  showToast('Progress reset');
+}
+
+function closeCompletion() {
+  document.getElementById('completion').classList.remove('show');
+}
+
+function stopCurrent() {
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+    currentAudio = null;
+  }
+  document.querySelectorAll('.btn-line-play').forEach(b => {
+    b.classList.remove('playing');
+    b.disabled = false;
+  });
+}
+
+function playLine(idx) {
+  return new Promise((resolve) => {
+    stopCurrent();
+    const btn = document.getElementById(`playbtn-${idx}`);
+    btn.classList.add('playing');
+    btn.disabled = true;
+
+    const audio = new Audio(LINES[idx].audio);
+    audio.playbackRate = speed;
+    currentAudio = audio;
+
+    audio.onended = () => {
+      btn.classList.remove('playing');
+      btn.disabled = false;
+      currentAudio = null;
+      resolve();
+    };
+    audio.onerror = () => {
+      btn.classList.remove('playing');
+      btn.disabled = false;
+      currentAudio = null;
+      showToast('Audio error');
+      resolve();
+    };
+    audio.play().catch(() => {
+      btn.classList.remove('playing');
+      btn.disabled = false;
+      currentAudio = null;
+      showToast('Tap Play to start audio');
+      resolve();
+    });
+
+    showToast(`Playing line ${idx + 1}`);
+  });
+}
+
+async function playFullDua() {
+  const btn = document.getElementById('btnPlayAll');
+  btn.disabled = true;
+  btn.textContent = '⏳ Playing…';
+  for (let i = 0; i < LINES.length; i++) {
+    await playLine(i);
+    if (i < LINES.length - 1) await new Promise(r => setTimeout(r, 500));
+  }
+  btn.disabled = false;
+  btn.textContent = '🔊 Play Full Dua';
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+buildCards();
+</script>
+</body>
+</html>
