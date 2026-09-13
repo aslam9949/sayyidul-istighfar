@@ -105,7 +105,7 @@ header p{font-size:.85rem;color:var(--text-dim)}
 
 <button class="btn-reset" onclick="resetProgress()">↺ Reset Progress</button>
 
-<div class="attribution">Sahih al-Bukhari 6306 · Voice generated with MiMo TTS</div>
+<div class="attribution">Sahih al-Bukhari 6306 · Line voice: MiMo TTS · Full recitation: Arabic neural (Zariyah), one take — no gaps</div>
 
 <div class="completion" id="completion">
 <div class="big-arabic">مَاشَاءَ اللَّهُ — بَارَكَ اللَّهُ فِيكَ</div>
@@ -126,6 +126,7 @@ const LINES = [
   { arabic: "فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ", translit: "Faghfir-lee fa innahu la yaghfiru adhdhunuba illa ant", meaning: "Forgive me, for none can forgive sins except You", audio: "audio/line_7.mp3" }
 ];
 
+const FULL_AUDIO = "audio/full.mp3";
 let speed = 1;
 let currentAudio = null;
 let memorized = JSON.parse(localStorage.getItem('si_memorized') || '[]');
@@ -187,6 +188,13 @@ function closeCompletion() {
   document.getElementById('completion').classList.remove('show');
 }
 
+function resetPlayAllBtn() {
+  const btn = document.getElementById('btnPlayAll');
+  btn.disabled = false;
+  btn.textContent = '🔊 Play Full Dua';
+  delete btn.dataset.full;
+}
+
 function stopCurrent() {
   if (currentAudio) {
     currentAudio.pause();
@@ -197,6 +205,7 @@ function stopCurrent() {
     b.classList.remove('playing');
     b.disabled = false;
   });
+  resetPlayAllBtn();
 }
 
 function playLine(idx) {
@@ -235,16 +244,33 @@ function playLine(idx) {
   });
 }
 
-async function playFullDua() {
+function playFullDua() {
   const btn = document.getElementById('btnPlayAll');
-  btn.disabled = true;
-  btn.textContent = '⏳ Playing…';
-  for (let i = 0; i < LINES.length; i++) {
-    await playLine(i);
-    if (i < LINES.length - 1) await new Promise(r => setTimeout(r, 500));
+  if (currentAudio && btn.dataset.full === '1') {
+    stopCurrent();
+    return;
   }
-  btn.disabled = false;
-  btn.textContent = '🔊 Play Full Dua';
+  stopCurrent();
+  btn.dataset.full = '1';
+  btn.textContent = '⏸ Playing…';
+  const audio = new Audio(FULL_AUDIO);
+  audio.playbackRate = speed;
+  currentAudio = audio;
+  audio.onended = () => {
+    currentAudio = null;
+    resetPlayAllBtn();
+  };
+  audio.onerror = () => {
+    currentAudio = null;
+    resetPlayAllBtn();
+    showToast('Audio error');
+  };
+  audio.play().catch(() => {
+    currentAudio = null;
+    resetPlayAllBtn();
+    showToast('Tap Play Full Dua to start');
+  });
+  showToast('Full recitation — one take');
 }
 
 function showToast(msg) {
