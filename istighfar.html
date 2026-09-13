@@ -105,7 +105,7 @@ header p{font-size:.85rem;color:var(--text-dim)}
 
 <button class="btn-reset" onclick="resetProgress()">↺ Reset Progress</button>
 
-<div class="attribution">Sahih al-Bukhari 6306 · Voice: original MiMo TTS · Full play is the same voice, one take</div>
+<div class="attribution">Sahih al-Bukhari 6306 · Original recitation (the first 7 audio files)</div>
 
 <div class="completion" id="completion">
 <div class="big-arabic">مَاشَاءَ اللَّهُ — بَارَكَ اللَّهُ فِيكَ</div>
@@ -126,7 +126,7 @@ const LINES = [
   { arabic: "فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ", translit: "Faghfir-lee fa innahu la yaghfiru adhdhunuba illa ant", meaning: "Forgive me, for none can forgive sins except You", audio: "audio/line_7.mp3" }
 ];
 
-const FULL_AUDIO = "audio/full.mp3";
+const FULL_AUDIO = "audio/full.mp3?v=orig7";
 let speed = 1;
 let currentAudio = null;
 let memorized = JSON.parse(localStorage.getItem('si_memorized') || '[]');
