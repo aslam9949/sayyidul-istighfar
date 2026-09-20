@@ -105,7 +105,7 @@ header p{font-size:.85rem;color:var(--text-dim)}
 
 <button class="btn-reset" onclick="resetProgress()">↺ Reset Progress</button>
 
-<div class="attribution">Abu Dawud 5090 · Hisn al-Muslim 123 · Human recitation (your video, extra talking cut) · this dua only · Full play is one take · Progress is separate from Sayyidul Istighfar</div>
+<div class="attribution">Abu Dawud 5090 · Hisn al-Muslim 123 · Human voice: Siedd — Allah Humma (vocals only) · logo intro cut · this dua only · Full play is one take · Progress is separate from Sayyidul Istighfar</div>
 
 <div class="completion" id="completion">
 <div class="big-arabic">مَاشَاءَ اللَّهُ — بَارَكَ اللَّهُ فِيكَ</div>
@@ -118,14 +118,14 @@ header p{font-size:.85rem;color:var(--text-dim)}
 <script>
 const TOTAL = 5;
 const LINES = [
-  { arabic: "اللَّهُمَّ رَحْمَتَكَ أَرْجُو", translit: "Allahumma rahmataka arju", meaning: "O Allah, I hope for Your mercy", audio: "audio/rahmah/line_1.mp3?v=moen2" },
-  { arabic: "فَلَا تَكِلْنِي إِلَى نَفْسِي", translit: "fala takilni ila nafsi", meaning: "so do not leave me to myself", audio: "audio/rahmah/line_2.mp3?v=moen2" },
-  { arabic: "طَرْفَةَ عَيْنٍ", translit: "tarfata 'ayn", meaning: "even for the blink of an eye", audio: "audio/rahmah/line_3.mp3?v=moen2" },
-  { arabic: "وَأَصْلِحْ لِي شَأْنِي كُلَّهُ", translit: "wa aslih li sha'ni kullahu", meaning: "and set right for me all of my affairs", audio: "audio/rahmah/line_4.mp3?v=moen2" },
-  { arabic: "لَا إِلَهَ إِلَّا أَنْتَ", translit: "la ilaha illa anta", meaning: "none worthy of worship except You", audio: "audio/rahmah/line_5.mp3?v=moen2" }
+  { arabic: "اللَّهُمَّ رَحْمَتَكَ أَرْجُو", translit: "Allahumma rahmataka arju", meaning: "O Allah, I hope for Your mercy", audio: "audio/rahmah/line_1.mp3?v=siedd1" },
+  { arabic: "فَلَا تَكِلْنِي إِلَى نَفْسِي", translit: "fala takilni ila nafsi", meaning: "so do not leave me to myself", audio: "audio/rahmah/line_2.mp3?v=siedd1" },
+  { arabic: "طَرْفَةَ عَيْنٍ", translit: "tarfata 'ayn", meaning: "even for the blink of an eye", audio: "audio/rahmah/line_3.mp3?v=siedd1" },
+  { arabic: "وَأَصْلِحْ لِي شَأْنِي كُلَّهُ", translit: "wa aslih li sha'ni kullahu", meaning: "and set right for me all of my affairs", audio: "audio/rahmah/line_4.mp3?v=siedd1" },
+  { arabic: "لَا إِلَهَ إِلَّا أَنْتَ", translit: "la ilaha illa anta", meaning: "none worthy of worship except You", audio: "audio/rahmah/line_5.mp3?v=siedd1" }
 ];
 
-const FULL_AUDIO = "audio/rahmah/full.mp3?v=moen2";
+const FULL_AUDIO = "audio/rahmah/full.mp3?v=siedd1";
 let speed = 1;
 let currentAudio = null;
 let memorized = JSON.parse(localStorage.getItem('rahmah_memorized') || '[]');
