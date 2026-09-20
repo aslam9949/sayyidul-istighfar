@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Allahumma rahmataka arju — Learn this dua</title>
+<title>Allahumma hab li hamdan — Learn this dua</title>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -65,7 +65,7 @@ header p{font-size:.85rem;color:var(--text-dim)}
 <body>
 <div class="topnav">
   <a href="index.html">← All duas</a>
-  <span class="lesson-tag">Lesson 2 of 4</span>
+  <span class="lesson-tag">Lesson 4 of 4</span>
 </div>
 
 <div class="arabesque">
@@ -82,9 +82,9 @@ header p{font-size:.85rem;color:var(--text-dim)}
 </div>
 
 <header>
-<h1>اللَّهُمَّ رَحْمَتَكَ أَرْجُو</h1>
-<p>Allahumma rahmataka arju — I hope for Your mercy</p>
-<p style="font-size:.7rem;margin-top:4px;color:var(--text-dim)">Abu Dawud 5090 · Hisn al-Muslim 123</p>
+<h1>اللَّهُمَّ هَبْ لِي حَمْدًا</h1>
+<p>Allahumma hab li hamdan — Grant me praise and honor</p>
+<p style="font-size:.7rem;margin-top:4px;color:var(--text-dim)">Sa'd ibn Ubadah (RA) · Makarim al-Akhlaq</p>
 </header>
 
 <div class="controls">
@@ -105,11 +105,11 @@ header p{font-size:.85rem;color:var(--text-dim)}
 
 <button class="btn-reset" onclick="resetProgress()">↺ Reset Progress</button>
 
-<div class="attribution">Abu Dawud 5090 · Hisn al-Muslim 123 · Human voice: Siedd — Allah Humma (vocals only) · logo intro cut · this dua only · Full play is one take · Progress is separate from Sayyidul Istighfar</div>
+<div class="attribution">Athar of Sa'd ibn Ubadah (RA) · Human recitation (Abu Saad / YouthfulDeen Short) · Urdu talk and English meaning cut · this dua only · Full play is one take · Progress is separate from the other duas</div>
 
 <div class="completion" id="completion">
 <div class="big-arabic">مَاشَاءَ اللَّهُ — بَارَكَ اللَّهُ فِيكَ</div>
-<div class="big-english">Masha'Allah! You have memorized this short dua. The Prophet ﷺ taught it as asking Allah not to leave you to yourself even for a blink of an eye, and to set all of your affairs right.</div>
+<div class="big-english">Masha'Allah! You have memorized this dua of Sa'd ibn Ubadah (RA): asking Allah for praise, honor, deeds, and enough provision — and that a little not be enough for you, nor you be suited to a little.</div>
 <button class="btn-close" onclick="closeCompletion()">Alhamdulillah ✓</button>
 </div>
 
@@ -118,17 +118,17 @@ header p{font-size:.85rem;color:var(--text-dim)}
 <script>
 const TOTAL = 5;
 const LINES = [
-  { arabic: "اللَّهُمَّ رَحْمَتَكَ أَرْجُو", translit: "Allahumma rahmataka arju", meaning: "O Allah, I hope for Your mercy", audio: "audio/rahmah/line_1.mp3?v=siedd1" },
-  { arabic: "فَلَا تَكِلْنِي إِلَى نَفْسِي", translit: "fala takilni ila nafsi", meaning: "so do not leave me to myself", audio: "audio/rahmah/line_2.mp3?v=siedd1" },
-  { arabic: "طَرْفَةَ عَيْنٍ", translit: "tarfata 'ayn", meaning: "even for the blink of an eye", audio: "audio/rahmah/line_3.mp3?v=siedd1" },
-  { arabic: "وَأَصْلِحْ لِي شَأْنِي كُلَّهُ", translit: "wa aslih li sha'ni kullahu", meaning: "and set right for me all of my affairs", audio: "audio/rahmah/line_4.mp3?v=siedd1" },
-  { arabic: "لَا إِلَهَ إِلَّا أَنْتَ", translit: "la ilaha illa anta", meaning: "none worthy of worship except You", audio: "audio/rahmah/line_5.mp3?v=siedd1" }
+  { arabic: "اللَّهُمَّ هَبْ لِي حَمْدًا", translit: "Allahumma hab li hamdan", meaning: "O Allah, grant me praise", audio: "audio/habli/line_1.mp3?v=saad1" },
+  { arabic: "وَهَبْ لِي مَجْدًا", translit: "wa hab li majdan", meaning: "and grant me honor", audio: "audio/habli/line_2.mp3?v=saad1" },
+  { arabic: "لَا مَجْدَ إِلَّا بِفَعَالٍ", translit: "la majda illa bif'alin", meaning: "there is no honor except through deeds", audio: "audio/habli/line_3.mp3?v=saad1" },
+  { arabic: "وَلَا فَعَالَ إِلَّا بِمَالٍ", translit: "wa la fi'ala illa bimalin", meaning: "and no deeds except with wealth", audio: "audio/habli/line_4.mp3?v=saad1" },
+  { arabic: "اللَّهُمَّ لَا يُصْلِحُنِي الْقَلِيلُ وَلَا أَصْلُحُ عَلَيْهِ", translit: "Allahumma la yuslihuni al-qalil wa la asluhu 'alayhi", meaning: "O Allah, a little does not suffice me, and I am not suited to a little", audio: "audio/habli/line_5.mp3?v=saad1" }
 ];
 
-const FULL_AUDIO = "audio/rahmah/full.mp3?v=siedd1";
+const FULL_AUDIO = "audio/habli/full.mp3?v=saad1";
 let speed = 1;
 let currentAudio = null;
-let memorized = JSON.parse(localStorage.getItem('rahmah_memorized') || '[]');
+let memorized = JSON.parse(localStorage.getItem('habli_memorized') || '[]');
 
 function setSpeed(s, btn) {
   speed = s;
@@ -171,16 +171,16 @@ function updateProgress() {
 function toggleMem(idx) {
   if (memorized.includes(idx)) memorized = memorized.filter(i => i !== idx);
   else memorized.push(idx);
-  localStorage.setItem('rahmah_memorized', JSON.stringify(memorized));
+  localStorage.setItem('habli_memorized', JSON.stringify(memorized));
   buildCards();
 }
 
 function resetProgress() {
   if (!confirm('Reset memorization for this dua only?')) return;
   memorized = [];
-  localStorage.setItem('rahmah_memorized', '[]');
+  localStorage.setItem('habli_memorized', '[]');
   buildCards();
-  showToast('This dua reset — Sayyidul Istighfar is unchanged');
+  showToast('This dua reset — other lessons unchanged');
 }
 
 function closeCompletion() {
