@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Allahumma ihdini wa saddidni — Learn this dua</title>
+<title>Allahumma inni a'udhu bika — Learn this dua</title>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -65,7 +65,7 @@ header p{font-size:.85rem;color:var(--text-dim)}
 <body>
 <div class="topnav">
   <a href="index.html">← All duas</a>
-  <span class="lesson-tag">Lesson 3 of 5</span>
+  <span class="lesson-tag">Lesson 5 of 5</span>
 </div>
 
 <div class="arabesque">
@@ -82,9 +82,9 @@ header p{font-size:.85rem;color:var(--text-dim)}
 </div>
 
 <header>
-<h1>اللَّهُمَّ اهْدِنِي وَسَدِّدْنِي</h1>
-<p>Allahumma ihdini wa saddidni — Guide me and make me steadfast</p>
-<p style="font-size:.7rem;margin-top:4px;color:var(--text-dim)">Sahih Muslim 2725 · taught to Ali (RA)</p>
+<h1>اللَّهُمَّ إِنِّي أَعُوذُ بِكَ</h1>
+<p>Allahumma inni a'udhu bika — I seek refuge with You from laziness and inability</p>
+<p style="font-size:.7rem;margin-top:4px;color:var(--text-dim)">Sahih al-Bukhari 6369</p>
 </header>
 
 <div class="controls">
@@ -98,33 +98,37 @@ header p{font-size:.85rem;color:var(--text-dim)}
 
 <div class="progress-wrap">
 <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
-<div class="progress-text" id="progressText">0 / 1 memorized</div>
+<div class="progress-text" id="progressText">0 / 5 memorized</div>
 </div>
 
 <div class="cards" id="cards"></div>
 
 <button class="btn-reset" onclick="resetProgress()">↺ Reset Progress</button>
 
-<div class="attribution">Sahih Muslim 2725 · Human recitation (YouTube Short) · this dua only · one line · Full play is one take · Progress is separate from the other duas</div>
+<div class="attribution">Sahih al-Bukhari 6369 · Human recitation (Let the Sunnah Go Forth Short) · English talk cut · this dua only · Full play is one take · Progress is separate from the other duas</div>
 
 <div class="completion" id="completion">
 <div class="big-arabic">مَاشَاءَ اللَّهُ — بَارَكَ اللَّهُ فِيكَ</div>
-<div class="big-english">Masha'Allah! You have memorized this short dua. The Prophet ﷺ taught it to Ali (RA): when you ask for guidance, think of a traveler looking for the path; when you say saddidni, think of an archer straightening the arrow on the target.</div>
+<div class="big-english">Masha'Allah! You have memorized this dua. The Prophet ﷺ sought refuge with Allah from worry, sadness, inability, laziness, cowardice, stinginess, the burden of debt, and being overpowered by people.</div>
 <button class="btn-close" onclick="closeCompletion()">Alhamdulillah ✓</button>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-const TOTAL = 1;
+const TOTAL = 5;
 const LINES = [
-  { arabic: "اللَّهُمَّ اهْدِنِي وَسَدِّدْنِي", translit: "Allahumma ihdini wa saddidni", meaning: "O Allah, guide me and make me steadfast", audio: "audio/ihdini/line_1.mp3?v=short1" }
+  { arabic: "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ", translit: "Allahumma inni a'udhu bika min al-hammi wal-hazan", meaning: "O Allah, I seek refuge with You from worry and sadness", audio: "audio/ajz/line_1.mp3?v=sunnah1" },
+  { arabic: "وَالْعَجْزِ وَالْكَسَلِ", translit: "wal-'ajzi wal-kasal", meaning: "and from inability and laziness", audio: "audio/ajz/line_2.mp3?v=sunnah1" },
+  { arabic: "وَالْجُبْنِ وَالْبُخْلِ", translit: "wal-jubni wal-bukhl", meaning: "and from cowardice and stinginess", audio: "audio/ajz/line_3.mp3?v=sunnah1" },
+  { arabic: "وَضَلَعِ الدَّيْنِ", translit: "wa dala'i ad-dayn", meaning: "and from the burden of debt", audio: "audio/ajz/line_4.mp3?v=sunnah1" },
+  { arabic: "وَغَلَبَةِ الرِّجَالِ", translit: "wa ghalabati ar-rijal", meaning: "and from being overpowered by people", audio: "audio/ajz/line_5.mp3?v=sunnah1" }
 ];
 
-const FULL_AUDIO = "audio/ihdini/full.mp3?v=short1";
+const FULL_AUDIO = "audio/ajz/full.mp3?v=sunnah1";
 let speed = 1;
 let currentAudio = null;
-let memorized = JSON.parse(localStorage.getItem('ihdini_memorized') || '[]');
+let memorized = JSON.parse(localStorage.getItem('ajz_memorized') || '[]');
 
 function setSpeed(s, btn) {
   speed = s;
@@ -167,14 +171,14 @@ function updateProgress() {
 function toggleMem(idx) {
   if (memorized.includes(idx)) memorized = memorized.filter(i => i !== idx);
   else memorized.push(idx);
-  localStorage.setItem('ihdini_memorized', JSON.stringify(memorized));
+  localStorage.setItem('ajz_memorized', JSON.stringify(memorized));
   buildCards();
 }
 
 function resetProgress() {
   if (!confirm('Reset memorization for this dua only?')) return;
   memorized = [];
-  localStorage.setItem('ihdini_memorized', '[]');
+  localStorage.setItem('ajz_memorized', '[]');
   buildCards();
   showToast('This dua reset — other lessons unchanged');
 }
