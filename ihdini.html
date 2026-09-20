@@ -98,14 +98,14 @@ header p{font-size:.85rem;color:var(--text-dim)}
 
 <div class="progress-wrap">
 <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
-<div class="progress-text" id="progressText">0 / 2 memorized</div>
+<div class="progress-text" id="progressText">0 / 1 memorized</div>
 </div>
 
 <div class="cards" id="cards"></div>
 
 <button class="btn-reset" onclick="resetProgress()">↺ Reset Progress</button>
 
-<div class="attribution">Sahih Muslim 2725 · Human recitation from your clip (Arbaz Rashid) · Urdu talk and share-card cut · this dua only · Full play is one take · Progress is separate from the other duas</div>
+<div class="attribution">Sahih Muslim 2725 · Human recitation (YouTube Short) · this dua only · one line · Full play is one take · Progress is separate from the other duas</div>
 
 <div class="completion" id="completion">
 <div class="big-arabic">مَاشَاءَ اللَّهُ — بَارَكَ اللَّهُ فِيكَ</div>
@@ -116,13 +116,12 @@ header p{font-size:.85rem;color:var(--text-dim)}
 <div class="toast" id="toast"></div>
 
 <script>
-const TOTAL = 2;
+const TOTAL = 1;
 const LINES = [
-  { arabic: "اللَّهُمَّ اهْدِنِي", translit: "Allahumma ihdini", meaning: "O Allah, guide me", audio: "audio/ihdini/line_1.mp3?v=arbaz1" },
-  { arabic: "وَسَدِّدْنِي", translit: "wa saddidni", meaning: "and make me steadfast", audio: "audio/ihdini/line_2.mp3?v=arbaz1" }
+  { arabic: "اللَّهُمَّ اهْدِنِي وَسَدِّدْنِي", translit: "Allahumma ihdini wa saddidni", meaning: "O Allah, guide me and make me steadfast", audio: "audio/ihdini/line_1.mp3?v=short1" }
 ];
 
-const FULL_AUDIO = "audio/ihdini/full.mp3?v=arbaz1";
+const FULL_AUDIO = "audio/ihdini/full.mp3?v=short1";
 let speed = 1;
 let currentAudio = null;
 let memorized = JSON.parse(localStorage.getItem('ihdini_memorized') || '[]');
