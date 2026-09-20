@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sayyidul Istighfar — Master the Best Dua</title>
+<title>Allahumma ihdini wa saddidni — Learn this dua</title>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -12,7 +12,7 @@ body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min
 .arabesque{display:flex;justify-content:center;padding:18px 0 6px}
 .arabesque svg{width:min(90vw,420px);height:auto}
 header{text-align:center;padding:12px 20px 20px}
-header h1{font-family:'Amiri',serif;font-size:clamp(1.5rem,5vw,2.2rem);color:var(--gold);margin-bottom:4px;letter-spacing:1px}
+header h1{font-family:'Amiri',serif;font-size:clamp(1.4rem,5vw,2rem);color:var(--gold);margin-bottom:4px;letter-spacing:1px;line-height:1.7}
 header p{font-size:.85rem;color:var(--text-dim)}
 .controls{max-width:540px;margin:0 auto 16px;padding:0 16px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center}
 .btn-play-all{background:linear-gradient(135deg,var(--gold),#e0c060);color:var(--bg);border:none;padding:12px 28px;border-radius:30px;font-size:1rem;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 20px rgba(201,168,76,.3)}
@@ -65,7 +65,7 @@ header p{font-size:.85rem;color:var(--text-dim)}
 <body>
 <div class="topnav">
   <a href="index.html">← All duas</a>
-  <span class="lesson-tag">Lesson 1 of 3</span>
+  <span class="lesson-tag">Lesson 3 of 3</span>
 </div>
 
 <div class="arabesque">
@@ -82,9 +82,9 @@ header p{font-size:.85rem;color:var(--text-dim)}
 </div>
 
 <header>
-<h1>سَيِّدُ الْاسْتِغْفَارِ</h1>
-<p>Sayyidul Istighfar — The Master of Seeking Forgiveness</p>
-<p style="font-size:.7rem;margin-top:4px;color:var(--text-dim)">Sahih al-Bukhari 6306</p>
+<h1>اللَّهُمَّ اهْدِنِي وَسَدِّدْنِي</h1>
+<p>Allahumma ihdini wa saddidni — Guide me and make me steadfast</p>
+<p style="font-size:.7rem;margin-top:4px;color:var(--text-dim)">Sahih Muslim 2725 · taught to Ali (RA)</p>
 </header>
 
 <div class="controls">
@@ -98,38 +98,34 @@ header p{font-size:.85rem;color:var(--text-dim)}
 
 <div class="progress-wrap">
 <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
-<div class="progress-text" id="progressText">0 / 7 memorized</div>
+<div class="progress-text" id="progressText">0 / 2 memorized</div>
 </div>
 
 <div class="cards" id="cards"></div>
 
 <button class="btn-reset" onclick="resetProgress()">↺ Reset Progress</button>
 
-<div class="attribution">Sahih al-Bukhari 6306 · Original recitation (the first 7 audio files)</div>
+<div class="attribution">Sahih Muslim 2725 · Human recitation from your clip (Arbaz Rashid) · Urdu talk and share-card cut · this dua only · Full play is one take · Progress is separate from the other duas</div>
 
 <div class="completion" id="completion">
 <div class="big-arabic">مَاشَاءَ اللَّهُ — بَارَكَ اللَّهُ فِيكَ</div>
-<div class="big-english">Masha'Allah! You have memorized Sayyidul Istighfar — the best dua for seeking forgiveness. The Prophet ﷺ said: whoever recites it with conviction and dies that day enters Paradise.</div>
+<div class="big-english">Masha'Allah! You have memorized this short dua. The Prophet ﷺ taught it to Ali (RA): when you ask for guidance, think of a traveler looking for the path; when you say saddidni, think of an archer straightening the arrow on the target.</div>
 <button class="btn-close" onclick="closeCompletion()">Alhamdulillah ✓</button>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
+const TOTAL = 2;
 const LINES = [
-  { arabic: "اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ", translit: "Allahumma anta Rabbi la ilaha illa ant", meaning: "O Allah, You are my Lord, none worthy of worship but You", audio: "audio/line_1.mp3" },
-  { arabic: "خَلَقْتَنِي وَأَنَا عَبْدُكَ", translit: "Khalaqtani wa ana abduk", meaning: "You created me and I am Your slave", audio: "audio/line_2.mp3" },
-  { arabic: "وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ", translit: "Wa ana ala ahdika wa wa'dika mastata't", meaning: "I am faithful to my covenant as much as I can", audio: "audio/line_3.mp3" },
-  { arabic: "أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ", translit: "A'udhu bika min sharri ma sana't", meaning: "I seek refuge in You from the evil I have done", audio: "audio/line_4.mp3" },
-  { arabic: "أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ", translit: "Abu'u laka bi ni'matika alaiya", meaning: "I acknowledge Your blessings upon me", audio: "audio/line_5.mp3" },
-  { arabic: "وَأَبُوءُ لَكَ بِذَنْبِي", translit: "Wa abu'u laka bidhanbi", meaning: "And I confess to You all of my sins", audio: "audio/line_6.mp3" },
-  { arabic: "فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ", translit: "Faghfir-lee fa innahu la yaghfiru adhdhunuba illa ant", meaning: "Forgive me, for none can forgive sins except You", audio: "audio/line_7.mp3" }
+  { arabic: "اللَّهُمَّ اهْدِنِي", translit: "Allahumma ihdini", meaning: "O Allah, guide me", audio: "audio/ihdini/line_1.mp3?v=arbaz1" },
+  { arabic: "وَسَدِّدْنِي", translit: "wa saddidni", meaning: "and make me steadfast", audio: "audio/ihdini/line_2.mp3?v=arbaz1" }
 ];
 
-const FULL_AUDIO = "audio/full.mp3?v=orig7";
+const FULL_AUDIO = "audio/ihdini/full.mp3?v=arbaz1";
 let speed = 1;
 let currentAudio = null;
-let memorized = JSON.parse(localStorage.getItem('si_memorized') || '[]');
+let memorized = JSON.parse(localStorage.getItem('ihdini_memorized') || '[]');
 
 function setSpeed(s, btn) {
   speed = s;
@@ -147,7 +143,7 @@ function buildCards() {
     card.className = `card ${isMem ? 'memorized' : 'unlocked'}`;
     card.style.animationDelay = `${i * 0.08}s`;
     card.innerHTML = `
-      <span class="line-num">${i + 1} / 7</span>
+      <span class="line-num">${i + 1} / ${TOTAL}</span>
       <div class="arabic">${l.arabic}</div>
       <div class="translit">${l.translit}</div>
       <div class="meaning">${l.meaning}</div>
@@ -161,10 +157,10 @@ function buildCards() {
 }
 
 function updateProgress() {
-  const pct = (memorized.length / 7) * 100;
+  const pct = (memorized.length / TOTAL) * 100;
   document.getElementById('progressFill').style.width = pct + '%';
-  document.getElementById('progressText').textContent = `${memorized.length} / 7 memorized`;
-  if (memorized.length === 7) {
+  document.getElementById('progressText').textContent = `${memorized.length} / ${TOTAL} memorized`;
+  if (memorized.length === TOTAL) {
     setTimeout(() => document.getElementById('completion').classList.add('show'), 400);
   }
 }
@@ -172,16 +168,16 @@ function updateProgress() {
 function toggleMem(idx) {
   if (memorized.includes(idx)) memorized = memorized.filter(i => i !== idx);
   else memorized.push(idx);
-  localStorage.setItem('si_memorized', JSON.stringify(memorized));
+  localStorage.setItem('ihdini_memorized', JSON.stringify(memorized));
   buildCards();
 }
 
 function resetProgress() {
-  if (!confirm('Reset all memorization progress?')) return;
+  if (!confirm('Reset memorization for this dua only?')) return;
   memorized = [];
-  localStorage.setItem('si_memorized', '[]');
+  localStorage.setItem('ihdini_memorized', '[]');
   buildCards();
-  showToast('Progress reset');
+  showToast('This dua reset — other lessons unchanged');
 }
 
 function closeCompletion() {
