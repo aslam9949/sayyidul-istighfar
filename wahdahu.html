@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Allahumma rahmataka arju — Learn this dua</title>
+<title>La ilaha illallah wahdahu — Learn this dhikr</title>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -65,7 +65,7 @@ header p{font-size:.85rem;color:var(--text-dim)}
 <body>
 <div class="topnav">
   <a href="index.html">← All duas</a>
-  <span class="lesson-tag">Lesson 2 of 6</span>
+  <span class="lesson-tag">Lesson 6 of 6</span>
 </div>
 
 <div class="arabesque">
@@ -82,9 +82,9 @@ header p{font-size:.85rem;color:var(--text-dim)}
 </div>
 
 <header>
-<h1>اللَّهُمَّ رَحْمَتَكَ أَرْجُو</h1>
-<p>Allahumma rahmataka arju — I hope for Your mercy</p>
-<p style="font-size:.7rem;margin-top:4px;color:var(--text-dim)">Abu Dawud 5090 · Hisn al-Muslim 123</p>
+<h1>لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ</h1>
+<p>La ilaha illallah wahdahu — none has the right to be worshipped except Allah, alone</p>
+<p style="font-size:.7rem;margin-top:4px;color:var(--text-dim)">Morning or evening · authentic (al-Albani) · Sunan</p>
 </header>
 
 <div class="controls">
@@ -98,37 +98,35 @@ header p{font-size:.85rem;color:var(--text-dim)}
 
 <div class="progress-wrap">
 <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
-<div class="progress-text" id="progressText">0 / 5 memorized</div>
+<div class="progress-text" id="progressText">0 / 3 memorized</div>
 </div>
 
 <div class="cards" id="cards"></div>
 
 <button class="btn-reset" onclick="resetProgress()">↺ Reset Progress</button>
 
-<div class="attribution">Abu Dawud 5090 · Hisn al-Muslim 123 · Human voice: Siedd — Allah Humma (vocals only) · logo intro cut · this dua only · Full play is one take · Progress is separate from Sayyidul Istighfar</div>
+<div class="attribution">Authentic (al-Albani) · Sunan · Human recitation (Bukhari TV / Let the Sunnah Go Forth) · English talk cut · this dhikr only · Full play is one take · Progress is separate from the other lessons</div>
 
 <div class="completion" id="completion">
 <div class="big-arabic">مَاشَاءَ اللَّهُ — بَارَكَ اللَّهُ فِيكَ</div>
-<div class="big-english">Masha'Allah! You have memorized this short dua. The Prophet ﷺ taught it as asking Allah not to leave you to yourself even for a blink of an eye, and to set all of your affairs right.</div>
+<div class="big-english">Masha'Allah. You memorized this dhikr. Say it once in the morning, or once in the evening — the clip says if you die in that time, Allah forgives your sins.</div>
 <button class="btn-close" onclick="closeCompletion()">Alhamdulillah ✓</button>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-const TOTAL = 5;
+const TOTAL = 3;
 const LINES = [
-  { arabic: "اللَّهُمَّ رَحْمَتَكَ أَرْجُو", translit: "Allahumma rahmataka arju", meaning: "O Allah, I hope for Your mercy", audio: "audio/rahmah/line_1.mp3?v=siedd1" },
-  { arabic: "فَلَا تَكِلْنِي إِلَى نَفْسِي", translit: "fala takilni ila nafsi", meaning: "so do not leave me to myself", audio: "audio/rahmah/line_2.mp3?v=siedd1" },
-  { arabic: "طَرْفَةَ عَيْنٍ", translit: "tarfata 'ayn", meaning: "even for the blink of an eye", audio: "audio/rahmah/line_3.mp3?v=siedd1" },
-  { arabic: "وَأَصْلِحْ لِي شَأْنِي كُلَّهُ", translit: "wa aslih li sha'ni kullahu", meaning: "and set right for me all of my affairs", audio: "audio/rahmah/line_4.mp3?v=siedd1" },
-  { arabic: "لَا إِلَهَ إِلَّا أَنْتَ", translit: "la ilaha illa anta", meaning: "none worthy of worship except You", audio: "audio/rahmah/line_5.mp3?v=siedd1" }
+  { arabic: "لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ", translit: "La ilaha illallah wahdahu la sharika lah", meaning: "None has the right to be worshipped except Allah, alone, with no partner", audio: "audio/wahdahu/line_1.mp3?v=bukhari1" },
+  { arabic: "لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ", translit: "lahul-mulku wa lahul-hamd", meaning: "To Him belongs the dominion and to Him belongs all praise", audio: "audio/wahdahu/line_2.mp3?v=bukhari1" },
+  { arabic: "وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ", translit: "wa la hawla wa la quwwata illa billah", meaning: "There is no might and no power except with Allah", audio: "audio/wahdahu/line_3.mp3?v=bukhari1" }
 ];
 
-const FULL_AUDIO = "audio/rahmah/full.mp3?v=siedd1";
+const FULL_AUDIO = "audio/wahdahu/full.mp3?v=bukhari1";
 let speed = 1;
 let currentAudio = null;
-let memorized = JSON.parse(localStorage.getItem('rahmah_memorized') || '[]');
+let memorized = JSON.parse(localStorage.getItem('wahdahu_memorized') || '[]');
 
 function setSpeed(s, btn) {
   speed = s;
@@ -171,16 +169,16 @@ function updateProgress() {
 function toggleMem(idx) {
   if (memorized.includes(idx)) memorized = memorized.filter(i => i !== idx);
   else memorized.push(idx);
-  localStorage.setItem('rahmah_memorized', JSON.stringify(memorized));
+  localStorage.setItem('wahdahu_memorized', JSON.stringify(memorized));
   buildCards();
 }
 
 function resetProgress() {
   if (!confirm('Reset memorization for this dua only?')) return;
   memorized = [];
-  localStorage.setItem('rahmah_memorized', '[]');
+  localStorage.setItem('wahdahu_memorized', '[]');
   buildCards();
-  showToast('This dua reset — Sayyidul Istighfar is unchanged');
+  showToast('This lesson reset — other lessons unchanged');
 }
 
 function closeCompletion() {
