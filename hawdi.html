@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>La ilaha illallah wahdahu — Learn this dhikr</title>
+<title>Allahumma inni a'udhu bika min al-hawdi wal-hazan — Learn this dua</title>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -65,7 +65,7 @@ header p{font-size:.85rem;color:var(--text-dim)}
 <body>
 <div class="topnav">
   <a href="index.html">← All duas</a>
-  <span class="lesson-tag">Lesson 6 of 7</span>
+  <span class="lesson-tag">Lesson 7 of 7</span>
 </div>
 
 <div class="arabesque">
@@ -82,9 +82,9 @@ header p{font-size:.85rem;color:var(--text-dim)}
 </div>
 
 <header>
-<h1>لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ</h1>
-<p>La ilaha illallah wahdahu — none has the right to be worshipped except Allah, alone</p>
-<p style="font-size:.7rem;margin-top:4px;color:var(--text-dim)">Morning or evening · authentic (al-Albani) · Sunan</p>
+<h1>اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَوْدِ وَالْحَزَنِ</h1>
+<p>Allahumma inni a'udhu bika min al-hawdi wal-hazan — I seek refuge in You from worry and grief</p>
+<p style="font-size:.7rem;margin-top:4px;color:var(--text-dim)">Sahih al-Bukhari 6369 · said by the Prophet ﷺ morning and evening</p>
 </header>
 
 <div class="controls">
@@ -98,35 +98,33 @@ header p{font-size:.85rem;color:var(--text-dim)}
 
 <div class="progress-wrap">
 <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
-<div class="progress-text" id="progressText">0 / 3 memorized</div>
+<div class="progress-text" id="progressText">0 / 1 memorized</div>
 </div>
 
 <div class="cards" id="cards"></div>
 
 <button class="btn-reset" onclick="resetProgress()">↺ Reset Progress</button>
 
-<div class="attribution">Authentic (al-Albani) · Sunan · Human recitation (Bukhari TV / Let the Sunnah Go Forth) · English talk cut · this dhikr only · Full play is one take · Progress is separate from the other lessons</div>
+<div class="attribution">Sahih al-Bukhari 6369 · Human recitation (audio cut from the shared video) · this dua only · one line · Full play is one take · Progress is separate from the other duas</div>
 
 <div class="completion" id="completion">
 <div class="big-arabic">مَاشَاءَ اللَّهُ — بَارَكَ اللَّهُ فِيكَ</div>
-<div class="big-english">Masha'Allah. You memorized this dhikr. Say it once in the morning, or once in the evening — the clip says if you die in that time, Allah forgives your sins.</div>
+<div class="big-english">Masha'Allah! You have memorized this short dua. The Prophet ﷺ said: "O Allah, I seek refuge in You from worry and grief." Whoever says this in the morning and evening will be safe. Aisha (RA) asked who among us could recite it, and he ﷺ told her to say it three times — Allah will not let any grief touch that person.</div>
 <button class="btn-close" onclick="closeCompletion()">Alhamdulillah ✓</button>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-const TOTAL = 3;
+const TOTAL = 1;
 const LINES = [
-  { arabic: "لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ", translit: "La ilaha illallah wahdahu la sharika lah", meaning: "None has the right to be worshipped except Allah, alone, with no partner", audio: "audio/wahdahu/line_1.mp3?v=bukhari1" },
-  { arabic: "لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ", translit: "lahul-mulku wa lahul-hamd", meaning: "To Him belongs the dominion and to Him belongs all praise", audio: "audio/wahdahu/line_2.mp3?v=bukhari1" },
-  { arabic: "وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ", translit: "wa la hawla wa la quwwata illa billah", meaning: "There is no might and no power except with Allah", audio: "audio/wahdahu/line_3.mp3?v=bukhari1" }
+  { arabic: "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَوْدِ وَالْحَزَنِ", translit: "Allahumma inni a'udhu bika min al-hawdi wal-hazan", meaning: "O Allah, I seek refuge in You from worry and grief", audio: "audio/hawdi/line_1.mp3?v=hawdi1" }
 ];
 
-const FULL_AUDIO = "audio/wahdahu/full.mp3?v=bukhari1";
+const FULL_AUDIO = "audio/hawdi/full.mp3?v=hawdi1";
 let speed = 1;
 let currentAudio = null;
-let memorized = JSON.parse(localStorage.getItem('wahdahu_memorized') || '[]');
+let memorized = JSON.parse(localStorage.getItem('hawdi_memorized') || '[]');
 
 function setSpeed(s, btn) {
   speed = s;
@@ -169,16 +167,16 @@ function updateProgress() {
 function toggleMem(idx) {
   if (memorized.includes(idx)) memorized = memorized.filter(i => i !== idx);
   else memorized.push(idx);
-  localStorage.setItem('wahdahu_memorized', JSON.stringify(memorized));
+  localStorage.setItem('hawdi_memorized', JSON.stringify(memorized));
   buildCards();
 }
 
 function resetProgress() {
   if (!confirm('Reset memorization for this dua only?')) return;
   memorized = [];
-  localStorage.setItem('wahdahu_memorized', '[]');
+  localStorage.setItem('hawdi_memorized', '[]');
   buildCards();
-  showToast('This lesson reset — other lessons unchanged');
+  showToast('This dua reset — other lessons unchanged');
 }
 
 function closeCompletion() {
