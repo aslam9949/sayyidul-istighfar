@@ -13,7 +13,7 @@ window.LESSON = {
   "reward"
  ],
  "audioBase": "audio/wahdahu/",
- "cacheBust": "211237",
+ "cacheBust": "v1",
  "reference": {
   "cite": "Sahih al-Bukhari 3293, 6403 · Sahih Muslim 2691",
   "grade": "Sahih",

@@ -13,13 +13,13 @@ window.LESSON = {
   "work"
  ],
  "audioBase": "audio/habli/",
- "cacheBust": "211237",
+ "cacheBust": "v1",
  "reference": {
   "cite": "Athar of Sa'd ibn Ubadah (RA), Makarim al-Akhlaq",
   "grade": "Athar, not a Prophetic hadith",
   "link": "",
   "quote": "",
-  "note": "This wording is reported from the Companion Sa'd ibn Ubadah (RA), not from the Prophet ﷺ. It is kept here as a companion's dua and is labelled asathar so the source is never confused with a hadith."
+  "note": "This wording is reported from the Companion Sa'd ibn Ubadah (RA), not from the Prophet ﷺ. It is kept here as a companion's dua and is labelled an athar so the source is never confused with a hadith."
  },
  "why": [
   "It asks for praise and honour, then immediately sets their price: honour only through deeds, deeds only through halal means.",
