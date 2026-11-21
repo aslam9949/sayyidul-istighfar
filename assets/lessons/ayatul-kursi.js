@@ -13,7 +13,7 @@ window.LESSON = {
   "night"
  ],
  "audioBase": "audio/ayatul-kursi/",
- "cacheBust": "v1",
+ "cacheBust": "vc94d7f3d",
  "reference": {
   "cite": "Qur'an 2:255 · Sahih al-Bukhari 2311 · Sahih Muslim 810",
   "grade": "Qur'an + Sahih",

@@ -13,7 +13,7 @@ window.LESSON = {
   "laziness"
  ],
  "audioBase": "audio/ajz/",
- "cacheBust": "v1",
+ "cacheBust": "v95b80179",
  "reference": {
   "cite": "Sahih al-Bukhari 6369",
   "grade": "Sahih",

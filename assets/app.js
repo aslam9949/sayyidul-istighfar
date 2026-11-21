@@ -21,45 +21,68 @@
   // 1, 3, 7, then 30 days — a light schedule, not a promise of retention
   var INTERVALS = [1, 3, 7, 30];
 
+  /* Safari private mode and browsers with cookies blocked throw on localStorage access. Reading it
+     unguarded at module scope killed the whole page — no cards, no play buttons, no message. Fall
+     back to memory so the lesson still works, and tell the user progress will not be kept. */
+  var store = (function () {
+    try {
+      var probe = '__si_probe';
+      window.localStorage.setItem(probe, '1');
+      window.localStorage.removeItem(probe);
+      return { get: function (k) { return window.localStorage.getItem(k); },
+               set: function (k, v) { window.localStorage.setItem(k, v); },
+               blocked: false };
+    } catch (e) {
+      var mem = {};
+      return { get: function (k) { return Object.prototype.hasOwnProperty.call(mem, k) ? mem[k] : null; },
+               set: function (k, v) { mem[k] = String(v); },
+               blocked: true };
+    }
+  }());
+
   var state = {
     memorized: readArray(LS.mem),
     review: readObject(LS.review),
-    speed: parseFloat(localStorage.getItem(LS.speed)) || 1,
-    repeat: parseInt(localStorage.getItem(LS.repeat), 10) || 1,
-    selftest: localStorage.getItem(LS.selftest) === '1',
+    speed: parseFloat(store.get(LS.speed)) || 1,
+    repeat: parseInt(store.get(LS.repeat), 10) || 1,
+    selftest: store.get(LS.selftest) === '1',
     playing: null,
     queue: [],
     queueIndex: 0,
     repeatLeft: 0,
-    justCompleted: false
+    justCompleted: false,
+    reviewing: false
   };
 
   var $ = function (id) { return document.getElementById(id); };
-  var esc = function (s) {
-    return String(s).replace(/[&<>"']/g, function (c) {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
-    });
-  };
 
   function readArray(key) {
     try {
-      var v = JSON.parse(localStorage.getItem(key) || '[]');
+      var v = JSON.parse(store.get(key) || '[]');
       if (!Array.isArray(v)) return [];
-      // stale indices from an older line count are dropped, so progress can never exceed 100%
-      return v.filter(function (i) { return Number.isInteger(i) && i >= 0 && i < TOTAL; });
+      // stale indices from an older line count are dropped, and duplicates removed, so progress
+      // can never exceed 100% and two taps on the same line cannot double count
+      var seen = {};
+      return v.filter(function (i) {
+        if (!Number.isInteger(i) || i < 0 || i >= TOTAL || seen[i]) return false;
+        seen[i] = 1;
+        return true;
+      });
     } catch (e) { return []; }
   }
   function readObject(key) {
     try {
-      var v = JSON.parse(localStorage.getItem(key) || '{}');
+      var v = JSON.parse(store.get(key) || '{}');
       return (v && typeof v === 'object' && !Array.isArray(v)) ? v : {};
     } catch (e) { return {}; }
   }
   function save() {
-    localStorage.setItem(LS.mem, JSON.stringify(state.memorized));
-    localStorage.setItem(LS.review, JSON.stringify(state.review));
-    localStorage.setItem(LS.lastSeen, String(Date.now()));
-    localStorage.setItem(LS.last, L.slug);
+    try {
+      store.set(LS.mem, JSON.stringify(state.memorized));
+      store.set(LS.review, JSON.stringify(state.review));
+      store.set(LS.lastSeen, String(Date.now()));
+      store.set(LS.last, L.slug);
+    } catch (e) { /* quota or blocked storage must never break marking a line */ }
   }
 
   /* ---------- spaced review ---------- */
@@ -136,6 +159,7 @@
   function playQueue(list, startAt, label) {
     stopAudio();
     state.queue = list.slice();
+    state.reviewing = false;
     state.queueIndex = startAt || 0;
     state.repeatLeft = state.repeat - 1;
     setMediaSession(label);
@@ -153,6 +177,7 @@
     audio.onended = function () {
       if (btn) btn.classList.remove('playing');
       if (state.repeatLeft > 0) { state.repeatLeft--; state.playing = null; playNext(); return; }
+      if (state.reviewing) markReviewed(idx);
       state.repeatLeft = state.repeat - 1;
       state.queueIndex++;
       state.playing = null;
@@ -256,7 +281,9 @@
   }
 
   function updateProgress() {
-    var pct = (state.memorized.length / TOTAL) * 100;
+    var pct = TOTAL ? (state.memorized.length / TOTAL) * 100 : 0;
+    if (!isFinite(pct)) pct = 0;
+    pct = Math.max(0, Math.min(100, pct));
     var fill = $('progressFill');
     if (fill) fill.style.width = pct + '%';
     var text = $('progressText');
@@ -303,7 +330,7 @@
   /* ---------- controls ---------- */
   function setSpeed(s, btn) {
     state.speed = s;
-    localStorage.setItem(LS.speed, String(s));
+    try { store.set(LS.speed, String(s)); } catch (e) {}
     document.querySelectorAll('.speed-btn').forEach(function (b) {
       var on = b === btn;
       b.classList.toggle('active', on);
@@ -315,7 +342,7 @@
 
   function setRepeat(n, btn) {
     state.repeat = n;
-    localStorage.setItem(LS.repeat, String(n));
+    try { store.set(LS.repeat, String(n)); } catch (e) {}
     document.querySelectorAll('[data-repeat]').forEach(function (b) {
       var on = b === btn;
       b.classList.toggle('active', on);
@@ -340,7 +367,7 @@
 
   function toggleSelfTest(btn) {
     state.selftest = !state.selftest;
-    localStorage.setItem(LS.selftest, state.selftest ? '1' : '0');
+    try { store.set(LS.selftest, state.selftest ? '1' : '0'); } catch (e) {}
     if (btn) btn.setAttribute('aria-pressed', state.selftest ? 'true' : 'false');
     document.body.classList.toggle('selftest-on', state.selftest);
     maskHeader(state.selftest);
@@ -440,8 +467,10 @@
     if (rv) rv.addEventListener('click', function () {
       var list = dueLines();
       if (!list.length) { toast('Nothing due right now'); return; }
-      list.forEach(markReviewed);
+      // the schedule advances as each line finishes playing, not when the button is tapped —
+      // stopping halfway must not count as having reviewed the rest
       playQueue(list, 0, L.title + ' — review');
+      state.reviewing = true;
       buildCards();
     });
     var dl = $('downloadBtn');
@@ -468,6 +497,9 @@
     document.addEventListener('visibilitychange', function () { if (!document.hidden) save(); });
     buildCards();
     save();
+    if (store.blocked) {
+      toast('Progress cannot be saved in this browser — private mode?');
+    }
   }
 
   window.LESSON_UI = { stop: stopAudio, playQueue: playQueue };

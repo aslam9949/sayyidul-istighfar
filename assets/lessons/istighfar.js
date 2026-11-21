@@ -13,7 +13,7 @@ window.LESSON = {
   "evening"
  ],
  "audioBase": "audio/",
- "cacheBust": "v1",
+ "cacheBust": "v2c2105e9",
  "reference": {
   "cite": "Sahih al-Bukhari 6306",
   "grade": "Sahih",

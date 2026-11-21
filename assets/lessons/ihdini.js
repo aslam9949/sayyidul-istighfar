@@ -13,7 +13,7 @@ window.LESSON = {
   "short"
  ],
  "audioBase": "audio/ihdini/",
- "cacheBust": "v1",
+ "cacheBust": "v58256df3",
  "reference": {
   "cite": "Sahih Muslim 2725",
   "grade": "Sahih",

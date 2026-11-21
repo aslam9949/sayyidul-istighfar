@@ -13,7 +13,7 @@ window.LESSON = {
   "short"
  ],
  "audioBase": "audio/hawdi/",
- "cacheBust": "v1",
+ "cacheBust": "v085b29b2",
  "reference": {
   "cite": "Sahih al-Bukhari 6369",
   "grade": "Sahih",

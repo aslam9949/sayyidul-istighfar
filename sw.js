@@ -1,5 +1,5 @@
-/* Offline shell + audio. Bump CACHE when the shell changes. */
-const CACHE = 'duas-v6';
+/* Offline shell + audio. CACHE is generated from the shell content at build time. */
+const CACHE = 'duas-609f5bd3';
 const SHELL = [
  "index.html",
  "assets/app.css",
@@ -30,7 +30,10 @@ const SHELL = [
 ];
 
 self.addEventListener('install', e => {
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
+  // cache each entry individually: addAll() is all-or-nothing, so one missing file would make
+  // the whole offline mode fail to install with no visible error
+  e.waitUntil(caches.open(CACHE).then(c => Promise.all(SHELL.map(u =>
+    c.add(u).catch(() => {})))).then(() => self.skipWaiting()));
 });
 self.addEventListener('activate', e => {
   e.waitUntil(caches.keys().then(keys =>

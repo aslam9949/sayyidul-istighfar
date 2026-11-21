@@ -12,12 +12,6 @@
   var resumeLink = document.getElementById('resumeLink');
   var resumeName = document.getElementById('resumeName');
 
-  function esc(s) {
-    return String(s).replace(/[&<>"']/g, function (c) {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
-    });
-  }
-
   /* ---- progress rings ---- */
   LESSONS.forEach(function (l) {
     var done = 0;
@@ -33,13 +27,13 @@
     var fill = ring.querySelector('.ring-fill');
     var label = ring.querySelector('.label');
     var C = 2 * Math.PI * 22;
-    if (fill) fill.setAttribute('stroke-dashoffset', String(C * (1 - pct / 100)));
+    if (fill) {
+      fill.setAttribute('stroke-dashoffset', String(C * (1 - pct / 100)));
+      // set both branches: the ring used to stay green after progress was reset
+      fill.setAttribute('stroke', pct === 100 ? '#4caf50' : '#c9a84c');
+    }
     if (label) label.textContent = pct + '%';
     ring.setAttribute('aria-label', pct + '% memorised');
-    if (pct === 100) {
-      var f = ring.querySelector('.ring-fill');
-      if (f) f.setAttribute('stroke', '#4caf50');
-    }
   });
 
   /* ---- resume ---- */

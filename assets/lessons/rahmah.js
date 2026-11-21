@@ -13,7 +13,7 @@ window.LESSON = {
   "anxiety"
  ],
  "audioBase": "audio/rahmah/",
- "cacheBust": "v1",
+ "cacheBust": "v372c1fcf",
  "reference": {
   "cite": "Sunan Abi Dawud 5090",
   "grade": "Hasan in chain (al-Albani)",
