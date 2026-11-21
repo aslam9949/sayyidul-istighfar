@@ -1,108 +1,191 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Learn duas — line by line</title>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#0d1b2a;--bg2:#1b2838;--gold:#c9a84c;--gold-dim:#a08030;--text:#e0d6c2;--text-dim:#8a8070;--radius:12px}
-body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min-height:100vh;padding:0 0 48px}
-.arabesque{display:flex;justify-content:center;padding:18px 0 6px}
-.arabesque svg{width:min(90vw,420px);height:auto}
-header{text-align:center;padding:12px 20px 8px}
-header h1{font-family:'Amiri',serif;font-size:clamp(1.5rem,5vw,2.1rem);color:var(--gold);margin-bottom:6px}
-header p{font-size:.85rem;color:var(--text-dim);max-width:420px;margin:0 auto;line-height:1.5}
-.list{max-width:540px;margin:22px auto 0;padding:0 16px;display:flex;flex-direction:column;gap:14px}
-.pick{
-  display:block;text-decoration:none;color:inherit;
-  background:var(--bg2);border:1px solid #1e2e3e;border-radius:var(--radius);
-  padding:20px 18px;border-left:3px solid var(--gold);
-  transition:transform .15s,border-color .15s;
-}
-.pick:hover{transform:translateY(-2px);border-color:var(--gold)}
-.pick .num{font-size:.7rem;letter-spacing:.14em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
-.pick .ar{font-family:'Amiri',serif;font-size:clamp(1.25rem,4.5vw,1.6rem);direction:rtl;text-align:right;color:#f0e6d0;line-height:1.9;margin-bottom:8px}
-.pick h2{font-size:1rem;font-weight:600;color:var(--text);margin-bottom:4px}
-.pick .meta{font-size:.78rem;color:var(--text-dim);line-height:1.45}
-.pick .go{margin-top:12px;display:inline-block;color:var(--bg);background:var(--gold);padding:8px 16px;border-radius:20px;font-size:.8rem;font-weight:600}
-.note{max-width:540px;margin:22px auto 0;padding:0 16px;font-size:.75rem;color:var(--text-dim);text-align:center;line-height:1.5}
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Learn duas — line by line — Learn this dua</title>
+<meta name="description" content="Eight duas and one ayah, learned line by line with real audio, transliteration, meaning, the hadith reference and a method for reciting it.">
+<meta name="theme-color" content="#0d1b2a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learn duas — line by line">
+<meta property="og:description" content="Eight duas and one ayah, learned line by line with real audio, transliteration, meaning, the hadith reference and a method for reciting it.">
+<meta name="twitter:card" content="summary">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d1b2a'/%3E%3Cpath d='M16 6l3 7 7 3-7 3-3 7-3-7-7-3 7-3z' fill='%23c9a84c'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/app.css">
 </head>
 <body>
-<div class="arabesque">
-<svg viewBox="0 0 400 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 25 Q50 0 100 25 T200 25 T300 25 T400 25" stroke="#c9a84c" stroke-width="1.2" fill="none" opacity=".5"/>
-<path d="M0 25 Q50 50 100 25 T200 25 T300 25 T400 25" stroke="#c9a84c" stroke-width="1.2" fill="none" opacity=".5"/>
-<circle cx="100" cy="25" r="4" fill="#c9a84c" opacity=".6"/>
-<circle cx="200" cy="25" r="5" fill="#c9a84c"/>
-<circle cx="300" cy="25" r="4" fill="#c9a84c" opacity=".6"/>
-<path d="M185 25 L200 12 L215 25 L200 38 Z" fill="none" stroke="#c9a84c" stroke-width="1"/>
-</svg>
+<div class="hub-head">
+  <h1>تَعَلَّمِ الدُّعَاءَ</h1>
+  <p>Eight separate lessons. Same method: hear one line, read it, say it, mark it memorised. Progress does not mix.</p>
 </div>
-<header>
-<h1>تَعَلَّمِ الدُّعَاءَ</h1>
-<p>Eight separate lessons. Same method: hear one line, read it, mark it memorized. Progress does not mix.</p>
-</header>
-<div class="list">
-  <a class="pick" href="istighfar.html">
-    <div class="num">Lesson 1 · 7 lines</div>
-    <div class="ar">سَيِّدُ الْاسْتِغْفَارِ</div>
-    <h2>Sayyidul Istighfar</h2>
-    <div class="meta">The master of seeking forgiveness · Sahih al-Bukhari 6306<br>Arabic · transliteration · meaning · voice per line</div>
-    <span class="go">Start this dua →</span>
-  </a>
-  <a class="pick" href="rahmah.html">
-    <div class="num">Lesson 2 · 5 lines</div>
-    <div class="ar">اللَّهُمَّ رَحْمَتَكَ أَرْجُو</div>
-    <h2>Allahumma rahmataka arju</h2>
-    <div class="meta">Hope for Allah’s mercy · Abu Dawud 5090 · Hisn al-Muslim 123<br>Arabic · transliteration · meaning · voice per line</div>
-    <span class="go">Start this dua →</span>
-  </a>
-  <a class="pick" href="ihdini.html">
-    <div class="num">Lesson 3 · 1 line</div>
-    <div class="ar">اللَّهُمَّ اهْدِنِي وَسَدِّدْنِي</div>
-    <h2>Allahumma ihdini wa saddidni</h2>
-    <div class="meta">Guide me and make me steadfast · Sahih Muslim 2725 · taught to Ali (RA)<br>Arabic · transliteration · meaning · voice per line</div>
-    <span class="go">Start this dua →</span>
-  </a>
-  <a class="pick" href="habli.html">
-    <div class="num">Lesson 4 · 5 lines</div>
-    <div class="ar">اللَّهُمَّ هَبْ لِي حَمْدًا</div>
-    <h2>Allahumma hab li hamdan</h2>
-    <div class="meta">Sa'd ibn Ubadah (RA) · praise, honor, and provision<br>Arabic · transliteration · meaning · voice per line</div>
-    <span class="go">Start this dua →</span>
-  </a>
-  <a class="pick" href="ajz.html">
-    <div class="num">Lesson 5 · 5 lines</div>
-    <div class="ar">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ</div>
-    <h2>Allahumma inni a'udhu bika</h2>
-    <div class="meta">Refuge from laziness and inability · Sahih al-Bukhari 6369<br>Arabic · transliteration · meaning · voice per line</div>
-    <span class="go">Start this dua →</span>
-  </a>
-  <a class="pick" href="wahdahu.html">
-    <div class="num">Lesson 6 · 3 lines</div>
-    <div class="ar">لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ</div>
-    <h2>La ilaha illallah wahdahu</h2>
-    <div class="meta">Once in the morning or evening · authentic (al-Albani) · Sunan<br>Arabic · transliteration · meaning · voice per line</div>
-    <span class="go">Start this dua →</span>
-  </a>
-  <a class="pick" href="hawdi.html">
-    <div class="num">Lesson 7 · 1 line</div>
-    <div class="ar">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَوْدِ</div>
-    <h2>Allahumma inni a'udhu bika min al-hawdi</h2>
-    <div class="meta">Refuge from worry and grief · Sahih al-Bukhari 6369 · morning and evening<br>Arabic · transliteration · meaning · voice per line</div>
-    <span class="go">Start this dua →</span>
-  </a>
-  <a class="pick" href="ayatul-kursi.html">
-    <div class="num">Lesson 8 · 9 lines</div>
-    <div class="ar">آيَةُ الْكُرْسِيِّ</div>
-    <h2>Ayatul Kursi</h2>
-    <div class="meta">The greatest ayah of the Qur'an · Al-Baqarah 2:255 · Sahih Muslim 810<br>Arabic · transliteration · meaning · voice per line</div>
-    <span class="go">Start this dua →</span>
+
+<div class="hub-tools">
+  <div class="search-wrap">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8a8070" stroke-width="2" aria-hidden="true">
+      <circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>
+    </svg>
+    <input id="search" type="search" placeholder="Search a dua, source or occasion…" aria-label="Search lessons">
+  </div>
+  <div class="tag-row"><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="forgiveness">forgiveness</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="morning">morning</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="evening">evening</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="distress">distress</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="mercy">mercy</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="anxiety">anxiety</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="guidance">guidance</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="decisions">decisions</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="short">short</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="provision">provision</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="dignity">dignity</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="work">work</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="debt">debt</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="laziness">laziness</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="dhikr">dhikr</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="reward">reward</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="grief">grief</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="quran">quran</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="protection">protection</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="night">night</button></div>
+</div>
+
+<div class="resume" id="resume">
+  <a href="#" id="resumeLink">
+    <div>
+      <div class="t">Continue</div>
+      <div class="n" id="resumeName"></div>
+    </div>
+    <span class="arrow">→</span>
   </a>
 </div>
-<p class="note">Pick one dua, finish it, then come back. Each lesson has its own play speed, full recitation, and memorize bar.</p>
+
+<div class="list" id="list">
+  <a class="pick" href="istighfar.html" data-tags="forgiveness,morning,evening" data-title="sayyidul istighfar sayyidul istighfar — the master of seeking forgiveness sahih al-bukhari 6306 · the prophet ﷺ taught it as the best form of istighfar">
+    <div class="ring" aria-hidden="true" data-ring="si">
+      <svg width="52" height="52" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="22" fill="none" stroke="#1e2e3e" stroke-width="4"/>
+        <circle class="ring-fill" cx="26" cy="26" r="22" fill="none" stroke="#c9a84c" stroke-width="4"
+                stroke-dasharray="138.2" stroke-dashoffset="138.2" stroke-linecap="round"/>
+      </svg>
+      <span class="label">0%</span>
+    </div>
+    <div class="body">
+      <div class="num">Lesson 1 · 7 lines</div>
+      <div class="ar" lang="ar" dir="rtl">سَيِّدُ الْاسْتِغْفَارِ</div>
+      <h2>Sayyidul Istighfar</h2>
+      <div class="meta">Sahih al-Bukhari 6306 · the Prophet ﷺ taught it as the best form of istighfar</div>
+      <div class="tags"><span>forgiveness</span><span>morning</span><span>evening</span></div>
+    </div>
+  </a>
+  <a class="pick" href="rahmah.html" data-tags="distress,mercy,anxiety" data-title="allahumma rahmataka arju allahumma rahmataka arju — the supplication of the one in distress sunan abi dawud 5090 · graded hasan by al-albani · hisn al-muslim 123">
+    <div class="ring" aria-hidden="true" data-ring="rh">
+      <svg width="52" height="52" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="22" fill="none" stroke="#1e2e3e" stroke-width="4"/>
+        <circle class="ring-fill" cx="26" cy="26" r="22" fill="none" stroke="#c9a84c" stroke-width="4"
+                stroke-dasharray="138.2" stroke-dashoffset="138.2" stroke-linecap="round"/>
+      </svg>
+      <span class="label">0%</span>
+    </div>
+    <div class="body">
+      <div class="num">Lesson 2 · 5 lines</div>
+      <div class="ar" lang="ar" dir="rtl">اللَّهُمَّ رَحْمَتَكَ أَرْجُو</div>
+      <h2>Allahumma rahmataka arju</h2>
+      <div class="meta">Sunan Abi Dawud 5090 · graded hasan by al-Albani · Hisn al-Muslim 123</div>
+      <div class="tags"><span>distress</span><span>mercy</span><span>anxiety</span></div>
+    </div>
+  </a>
+  <a class="pick" href="ihdini.html" data-tags="guidance,decisions,short" data-title="allahumma ihdini wa saddidni allahumma ihdini wa saddidni — guide me and make me steadfast sahih muslim 2725 · taught by the prophet ﷺ to ali ibn abi talib (ra)">
+    <div class="ring" aria-hidden="true" data-ring="ih">
+      <svg width="52" height="52" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="22" fill="none" stroke="#1e2e3e" stroke-width="4"/>
+        <circle class="ring-fill" cx="26" cy="26" r="22" fill="none" stroke="#c9a84c" stroke-width="4"
+                stroke-dasharray="138.2" stroke-dashoffset="138.2" stroke-linecap="round"/>
+      </svg>
+      <span class="label">0%</span>
+    </div>
+    <div class="body">
+      <div class="num">Lesson 3 · 1 lines</div>
+      <div class="ar" lang="ar" dir="rtl">اللَّهُمَّ اهْدِنِي وَسَدِّدْنِي</div>
+      <h2>Allahumma ihdini wa saddidni</h2>
+      <div class="meta">Sahih Muslim 2725 · taught by the Prophet ﷺ to Ali ibn Abi Talib (RA)</div>
+      <div class="tags"><span>guidance</span><span>decisions</span><span>short</span></div>
+    </div>
+  </a>
+  <a class="pick" href="habli.html" data-tags="provision,dignity,work" data-title="allahumma hab li hamdan allahumma hab li hamdan — grant me praise and honour athar of sa'd ibn ubadah (ra) · makarim al-akhlaq">
+    <div class="ring" aria-hidden="true" data-ring="hb">
+      <svg width="52" height="52" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="22" fill="none" stroke="#1e2e3e" stroke-width="4"/>
+        <circle class="ring-fill" cx="26" cy="26" r="22" fill="none" stroke="#c9a84c" stroke-width="4"
+                stroke-dasharray="138.2" stroke-dashoffset="138.2" stroke-linecap="round"/>
+      </svg>
+      <span class="label">0%</span>
+    </div>
+    <div class="body">
+      <div class="num">Lesson 4 · 5 lines</div>
+      <div class="ar" lang="ar" dir="rtl">اللَّهُمَّ هَبْ لِي حَمْدًا</div>
+      <h2>Allahumma hab li hamdan</h2>
+      <div class="meta">Athar of Sa'd ibn Ubadah (RA) · Makarim al-Akhlaq</div>
+      <div class="tags"><span>provision</span><span>dignity</span><span>work</span></div>
+    </div>
+  </a>
+  <a class="pick" href="ajz.html" data-tags="anxiety,debt,laziness" data-title="allahumma inni a'udhu bika allahumma inni a'udhu bika min al-hammi wal-hazan sahih al-bukhari 6369 · the prophet ﷺ said it often">
+    <div class="ring" aria-hidden="true" data-ring="aj">
+      <svg width="52" height="52" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="22" fill="none" stroke="#1e2e3e" stroke-width="4"/>
+        <circle class="ring-fill" cx="26" cy="26" r="22" fill="none" stroke="#c9a84c" stroke-width="4"
+                stroke-dasharray="138.2" stroke-dashoffset="138.2" stroke-linecap="round"/>
+      </svg>
+      <span class="label">0%</span>
+    </div>
+    <div class="body">
+      <div class="num">Lesson 5 · 5 lines</div>
+      <div class="ar" lang="ar" dir="rtl">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ</div>
+      <h2>Allahumma inni a'udhu bika</h2>
+      <div class="meta">Sahih al-Bukhari 6369 · the Prophet ﷺ said it often</div>
+      <div class="tags"><span>anxiety</span><span>debt</span><span>laziness</span></div>
+    </div>
+  </a>
+  <a class="pick" href="wahdahu.html" data-tags="dhikr,morning,reward" data-title="la ilaha illallahu wahdahu la ilaha illallahu wahdahu la sharika lah sahih al-bukhari 3293 & 6403 · sahih muslim 2691">
+    <div class="ring" aria-hidden="true" data-ring="wh">
+      <svg width="52" height="52" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="22" fill="none" stroke="#1e2e3e" stroke-width="4"/>
+        <circle class="ring-fill" cx="26" cy="26" r="22" fill="none" stroke="#c9a84c" stroke-width="4"
+                stroke-dasharray="138.2" stroke-dashoffset="138.2" stroke-linecap="round"/>
+      </svg>
+      <span class="label">0%</span>
+    </div>
+    <div class="body">
+      <div class="num">Lesson 6 · 3 lines</div>
+      <div class="ar" lang="ar" dir="rtl">لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ</div>
+      <h2>La ilaha illallahu wahdahu</h2>
+      <div class="meta">Sahih al-Bukhari 3293 & 6403 · Sahih Muslim 2691</div>
+      <div class="tags"><span>dhikr</span><span>morning</span><span>reward</span></div>
+    </div>
+  </a>
+  <a class="pick" href="hawdi.html" data-tags="anxiety,grief,short" data-title="allahumma inni a'udhu bika min al-hamm the short form: refuge from worry and grief sahih al-bukhari 6369 · said morning and evening">
+    <div class="ring" aria-hidden="true" data-ring="hw">
+      <svg width="52" height="52" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="22" fill="none" stroke="#1e2e3e" stroke-width="4"/>
+        <circle class="ring-fill" cx="26" cy="26" r="22" fill="none" stroke="#c9a84c" stroke-width="4"
+                stroke-dasharray="138.2" stroke-dashoffset="138.2" stroke-linecap="round"/>
+      </svg>
+      <span class="label">0%</span>
+    </div>
+    <div class="body">
+      <div class="num">Lesson 7 · 1 lines</div>
+      <div class="ar" lang="ar" dir="rtl">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ</div>
+      <h2>Allahumma inni a'udhu bika min al-hamm</h2>
+      <div class="meta">Sahih al-Bukhari 6369 · said morning and evening</div>
+      <div class="tags"><span>anxiety</span><span>grief</span><span>short</span></div>
+    </div>
+  </a>
+  <a class="pick" href="ayatul-kursi.html" data-tags="quran,protection,night" data-title="ayatul kursi ayatul kursi — al-baqarah 2:255 al-baqarah 2:255 · sahih al-bukhari 2311 · sahih muslim 810">
+    <div class="ring" aria-hidden="true" data-ring="ay">
+      <svg width="52" height="52" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="22" fill="none" stroke="#1e2e3e" stroke-width="4"/>
+        <circle class="ring-fill" cx="26" cy="26" r="22" fill="none" stroke="#c9a84c" stroke-width="4"
+                stroke-dasharray="138.2" stroke-dashoffset="138.2" stroke-linecap="round"/>
+      </svg>
+      <span class="label">0%</span>
+    </div>
+    <div class="body">
+      <div class="num">Lesson 8 · 9 lines</div>
+      <div class="ar" lang="ar" dir="rtl">آيَةُ الْكُرْسِيِّ</div>
+      <h2>Ayatul Kursi</h2>
+      <div class="meta">Al-Baqarah 2:255 · Sahih al-Bukhari 2311 · Sahih Muslim 810</div>
+      <div class="tags"><span>quran</span><span>protection</span><span>night</span></div>
+    </div>
+  </a>
+</div>
+<p class="empty" id="empty">Nothing matches that search.</p>
+
+<p class="note">Installed on your phone this works offline. Progress is stored on your device only — nothing is uploaded anywhere.</p>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/lessons/index.js"></script>
+<script src="assets/hub.js"></script>
 </body>
 </html>
