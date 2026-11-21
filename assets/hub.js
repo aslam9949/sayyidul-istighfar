@@ -98,12 +98,18 @@
     try { localStorage.setItem(PIN_KEY, JSON.stringify(list)); } catch (e) {}
   }
 
-  function pinBtn(label, aria, cls, fn) {
+  function pinBtn(label, aria, cls, fn, disabled) {
     var b = document.createElement('button');
     b.type = 'button';
     b.className = 'pin-act' + (cls ? ' ' + cls : '');
     b.textContent = label;
     b.setAttribute('aria-label', aria);
+    // first row cannot move up, last cannot move down: show that instead of a button that does
+    // nothing when tapped
+    if (disabled) {
+      b.disabled = true;
+      b.setAttribute('aria-disabled', 'true');
+    }
     b.addEventListener('click', fn);
     return b;
   }
@@ -148,18 +154,17 @@
       var tools = document.createElement('div');
       tools.className = 'pin-tools';
       tools.appendChild(pinBtn('↑', 'Move ' + lesson.title + ' up', 'up', function () {
-        if (i === 0) return;
         var list = readPins();
         var at = list.indexOf(slug);
         if (at > 0) { list.splice(at - 1, 0, list.splice(at, 1)[0]); writePins(list); }
         renderPins();
-      }));
+      }, i === 0));
       tools.appendChild(pinBtn('↓', 'Move ' + lesson.title + ' down', 'down', function () {
         var list = readPins();
         var at = list.indexOf(slug);
         if (at >= 0 && at < list.length - 1) { list.splice(at + 1, 0, list.splice(at, 1)[0]); writePins(list); }
         renderPins();
-      }));
+      }, i === pins.length - 1));
       tools.appendChild(pinBtn('✕', 'Unpin ' + lesson.title, 'rm', function () {
         var list = readPins().filter(function (s) { return s !== slug; });
         writePins(list);
@@ -396,4 +401,13 @@
   // after every declaration has actually run: the shelf reads pinsWrap/pinsList, and calling this
   // earlier (before those var assignments execute) silently returned and rendered nothing
   renderPins();
+
+  // coming back from a lesson with the back button can restore this page from the bfcache without
+  // re-running scripts, which would leave the shelf showing the pins you had before you pinned
+  window.addEventListener('pageshow', function (ev) {
+    if (ev.persisted) {
+      renderPins();
+      if (typeof apply === 'function') apply();
+    }
+  });
 })();

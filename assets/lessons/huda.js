@@ -19,7 +19,7 @@ window.LESSON = {
   "grade": "Sahih",
   "link": "https://sunnah.com/muslim:2721",
   "quote": "There is an hour on Friday and if a Muslim gets it while asking Allah for something, He will definitely meet his demand.",
-  "note": "The hadith about the hour does not name a dua to say. The dua here is a separate authentic ask (Muslim 2721). The two are placed together for practice, and the page does not claim the Prophet ﷺ specified this dua for that hour."
+  "note": "The hadith about the hour does not name a dua to say. The dua here is a separate authentic ask (Muslim 2721). The two are placed together for practice, and the page does not claim the Prophet ﷺ specified this dua for that hour. The audio for this line is synthesised: the Hisnul Muslim set does not contain it, and the short human recordings available say \"inna nas'aluka\" (plural) instead of the hadith's \"inni as'aluka\"."
  },
  "why": [
   "Four words in Arabic that cover the whole of what a person actually needs: guidance, piety, restraint and freedom from want.",

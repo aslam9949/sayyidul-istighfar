@@ -188,6 +188,7 @@ header .src{font-size:.72rem;margin-top:6px;color:var(--text-dim)}
   color:var(--text-mid);font-size:1rem;cursor:pointer}
 .pin-act:hover{border-color:var(--gold);color:var(--gold)}
 .pin-act.rm:hover{border-color:var(--red);color:var(--red)}
+.pin-act:disabled,.pin-act[aria-disabled="true"]{opacity:.3;cursor:default;border-color:var(--line)}
 .pinned-hint{font-size:.7rem;color:var(--text-dim);margin-top:10px;line-height:1.5}
 .pick{position:relative}
 .pick.is-pinned{border-color:var(--gold-dim)}
