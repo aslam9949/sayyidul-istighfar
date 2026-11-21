@@ -3,6 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Sayyidul Istighfar (Sahih al-Bukhari 6306) learned line by line with audio, transliteration and meaning.">
+<meta name="theme-color" content="#0d1b2a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sayyidul Istighfar — Master the Best Dua">
+<meta property="og:description" content="Sayyidul Istighfar (Sahih al-Bukhari 6306) learned line by line with audio, transliteration and meaning.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d1b2a'/%3E%3Cpath d='M16 6l3 7 7 3-7 3-3 7-3-7-7-3 7-3z' fill='%23c9a84c'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <title>Sayyidul Istighfar — Master the Best Dua</title>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
@@ -89,15 +98,15 @@ header p{font-size:.85rem;color:var(--text-dim)}
 
 <div class="controls">
 <div class="speed-group">
-<button class="speed-btn" data-speed="0.5" onclick="setSpeed(0.5,this)">0.5×</button>
-<button class="speed-btn active" data-speed="1" onclick="setSpeed(1,this)">1×</button>
-<button class="speed-btn" data-speed="1.5" onclick="setSpeed(1.5,this)">1.5×</button>
+<button class="speed-btn" data-speed="0.5" aria-pressed="false" onclick="setSpeed(0.5,this)">0.5×</button>
+<button class="speed-btn active" data-speed="1" aria-pressed="true" onclick="setSpeed(1,this)">1×</button>
+<button class="speed-btn" data-speed="1.5" aria-pressed="false" onclick="setSpeed(1.5,this)">1.5×</button>
 </div>
 <button class="btn-play-all" id="btnPlayAll" onclick="playFullDua()">🔊 Play Full Dua</button>
 </div>
 
 <div class="progress-wrap">
-<div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
+<div class="progress-bar-bg" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
 <div class="progress-text" id="progressText">0 / 7 memorized</div>
 </div>
 
@@ -110,7 +119,7 @@ header p{font-size:.85rem;color:var(--text-dim)}
 <div class="completion" id="completion">
 <div class="big-arabic">مَاشَاءَ اللَّهُ — بَارَكَ اللَّهُ فِيكَ</div>
 <div class="big-english">Masha'Allah! You have memorized Sayyidul Istighfar — the best dua for seeking forgiveness. The Prophet ﷺ said: whoever recites it with conviction and dies that day enters Paradise.</div>
-<button class="btn-close" onclick="closeCompletion()">Alhamdulillah ✓</button>
+<button class="btn-close" aria-label="Close and continue" onclick="closeCompletion()">Alhamdulillah ✓</button>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -126,15 +135,20 @@ const LINES = [
   { arabic: "فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ", translit: "Faghfir-lee fa innahu la yaghfiru adhdhunuba illa ant", meaning: "Forgive me, for none can forgive sins except You", audio: "audio/line_7.mp3" }
 ];
 
+const esc = (s) => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const TOTAL = LINES.length;
 const FULL_AUDIO = "audio/full.mp3?v=orig7";
 let speed = 1;
 let currentAudio = null;
-let memorized = JSON.parse(localStorage.getItem('si_memorized') || '[]');
+let justCompleted = false;
+let memorized = (JSON.parse(localStorage.getItem('si_memorized') || '[]') || [])
+    .filter(i => Number.isInteger(i) && i >= 0 && i < TOTAL);
 
 function setSpeed(s, btn) {
   speed = s;
   document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
+  document.querySelectorAll('.speed-btn').forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
   if (currentAudio) currentAudio.playbackRate = speed;
 }
 
@@ -148,12 +162,12 @@ function buildCards() {
     card.style.animationDelay = `${i * 0.08}s`;
     card.innerHTML = `
       <span class="line-num">${i + 1} / 7</span>
-      <div class="arabic">${l.arabic}</div>
-      <div class="translit">${l.translit}</div>
-      <div class="meaning">${l.meaning}</div>
+      <div class="arabic" lang="ar" dir="rtl">${esc(l.arabic)}</div>
+      <div class="translit">${esc(l.translit)}</div>
+      <div class="meaning">${esc(l.meaning)}</div>
       <div class="card-actions">
         <button class="btn-line-play" id="playbtn-${i}" onclick="playLine(${i})">🔊 Play</button>
-        <button class="btn-memorized ${isMem ? 'done' : ''}" onclick="toggleMem(${i})">${isMem ? '✓ Memorized' : '☐ Mark Memorized'}</button>
+        <button class="btn-memorized ${isMem ? 'done' : ''}" aria-pressed="${isMem}" onclick="toggleMem(${i})">${isMem ? '✓ Memorized' : '☐ Mark Memorized'}</button>
       </div>`;
     container.appendChild(card);
   });
@@ -163,8 +177,11 @@ function buildCards() {
 function updateProgress() {
   const pct = (memorized.length / 7) * 100;
   document.getElementById('progressFill').style.width = pct + '%';
+  const bar = document.getElementById('progressBar');
+  if (bar) bar.setAttribute('aria-valuenow', Math.round(pct));
   document.getElementById('progressText').textContent = `${memorized.length} / 7 memorized`;
   if (memorized.length === 7) {
+    justCompleted = false;
     setTimeout(() => document.getElementById('completion').classList.add('show'), 400);
   }
 }
@@ -172,6 +189,7 @@ function updateProgress() {
 function toggleMem(idx) {
   if (memorized.includes(idx)) memorized = memorized.filter(i => i !== idx);
   else memorized.push(idx);
+  justCompleted = memorized.length === TOTAL;
   localStorage.setItem('si_memorized', JSON.stringify(memorized));
   buildCards();
 }

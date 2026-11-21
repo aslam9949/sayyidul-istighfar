@@ -3,6 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="La ilaha illallahu wahdahu la sharika lah — morning and evening dhikr, line by line with audio.">
+<meta name="theme-color" content="#0d1b2a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="La ilaha illallah wahdahu — Learn this dhikr">
+<meta property="og:description" content="La ilaha illallahu wahdahu la sharika lah — morning and evening dhikr, line by line with audio.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d1b2a'/%3E%3Cpath d='M16 6l3 7 7 3-7 3-3 7-3-7-7-3 7-3z' fill='%23c9a84c'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <title>La ilaha illallah wahdahu — Learn this dhikr</title>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
@@ -89,15 +98,15 @@ header p{font-size:.85rem;color:var(--text-dim)}
 
 <div class="controls">
 <div class="speed-group">
-<button class="speed-btn" data-speed="0.5" onclick="setSpeed(0.5,this)">0.5×</button>
-<button class="speed-btn active" data-speed="1" onclick="setSpeed(1,this)">1×</button>
-<button class="speed-btn" data-speed="1.5" onclick="setSpeed(1.5,this)">1.5×</button>
+<button class="speed-btn" data-speed="0.5" aria-pressed="false" onclick="setSpeed(0.5,this)">0.5×</button>
+<button class="speed-btn active" data-speed="1" aria-pressed="true" onclick="setSpeed(1,this)">1×</button>
+<button class="speed-btn" data-speed="1.5" aria-pressed="false" onclick="setSpeed(1.5,this)">1.5×</button>
 </div>
 <button class="btn-play-all" id="btnPlayAll" onclick="playFullDua()">🔊 Play Full Dua</button>
 </div>
 
 <div class="progress-wrap">
-<div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
+<div class="progress-bar-bg" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
 <div class="progress-text" id="progressText">0 / 3 memorized</div>
 </div>
 
@@ -105,33 +114,37 @@ header p{font-size:.85rem;color:var(--text-dim)}
 
 <button class="btn-reset" onclick="resetProgress()">↺ Reset Progress</button>
 
-<div class="attribution">Authentic (al-Albani) · Sunan · Human recitation (Bukhari TV / Let the Sunnah Go Forth) · English talk cut · this dhikr only · Full play is one take · Progress is separate from the other lessons</div>
+<div class="attribution">Voice: ElevenLabs Arabic — Abu Hassan (calm, classical), sorrowful delivery · one clip per line · Full play is one take · Progress is separate from the other duas</div>
 
 <div class="completion" id="completion">
 <div class="big-arabic">مَاشَاءَ اللَّهُ — بَارَكَ اللَّهُ فِيكَ</div>
 <div class="big-english">Masha'Allah. You memorized this dhikr. Say it once in the morning, or once in the evening — the clip says if you die in that time, Allah forgives your sins.</div>
-<button class="btn-close" onclick="closeCompletion()">Alhamdulillah ✓</button>
+<button class="btn-close" aria-label="Close and continue" onclick="closeCompletion()">Alhamdulillah ✓</button>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
+const esc = (s) => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const TOTAL = 3;
 const LINES = [
-  { arabic: "لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ", translit: "La ilaha illallah wahdahu la sharika lah", meaning: "None has the right to be worshipped except Allah, alone, with no partner", audio: "audio/wahdahu/line_1.mp3?v=bukhari1" },
-  { arabic: "لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ", translit: "lahul-mulku wa lahul-hamd", meaning: "To Him belongs the dominion and to Him belongs all praise", audio: "audio/wahdahu/line_2.mp3?v=bukhari1" },
-  { arabic: "وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ", translit: "wa la hawla wa la quwwata illa billah", meaning: "There is no might and no power except with Allah", audio: "audio/wahdahu/line_3.mp3?v=bukhari1" }
+  { arabic: "لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ", translit: "La ilaha illallah wahdahu la sharika lah", meaning: "None has the right to be worshipped except Allah, alone, with no partner", audio: "audio/wahdahu/line_1.mp3?v=211237" },
+  { arabic: "لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ", translit: "lahul-mulku wa lahul-hamd", meaning: "To Him belongs the dominion and to Him belongs all praise", audio: "audio/wahdahu/line_2.mp3?v=211237" },
+  { arabic: "وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ", translit: "wa la hawla wa la quwwata illa billah", meaning: "There is no might and no power except with Allah", audio: "audio/wahdahu/line_3.mp3?v=211237" }
 ];
 
-const FULL_AUDIO = "audio/wahdahu/full.mp3?v=bukhari1";
+const FULL_AUDIO = "audio/wahdahu/full.mp3?v=211237";
 let speed = 1;
 let currentAudio = null;
-let memorized = JSON.parse(localStorage.getItem('wahdahu_memorized') || '[]');
+let justCompleted = false;
+let memorized = (JSON.parse(localStorage.getItem('wahdahu_memorized') || '[]') || [])
+    .filter(i => Number.isInteger(i) && i >= 0 && i < TOTAL);
 
 function setSpeed(s, btn) {
   speed = s;
   document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
+  document.querySelectorAll('.speed-btn').forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
   if (currentAudio) currentAudio.playbackRate = speed;
 }
 
@@ -145,12 +158,12 @@ function buildCards() {
     card.style.animationDelay = `${i * 0.08}s`;
     card.innerHTML = `
       <span class="line-num">${i + 1} / ${TOTAL}</span>
-      <div class="arabic">${l.arabic}</div>
-      <div class="translit">${l.translit}</div>
-      <div class="meaning">${l.meaning}</div>
+      <div class="arabic" lang="ar" dir="rtl">${esc(l.arabic)}</div>
+      <div class="translit">${esc(l.translit)}</div>
+      <div class="meaning">${esc(l.meaning)}</div>
       <div class="card-actions">
         <button class="btn-line-play" id="playbtn-${i}" onclick="playLine(${i})">🔊 Play</button>
-        <button class="btn-memorized ${isMem ? 'done' : ''}" onclick="toggleMem(${i})">${isMem ? '✓ Memorized' : '☐ Mark Memorized'}</button>
+        <button class="btn-memorized ${isMem ? 'done' : ''}" aria-pressed="${isMem}" onclick="toggleMem(${i})">${isMem ? '✓ Memorized' : '☐ Mark Memorized'}</button>
       </div>`;
     container.appendChild(card);
   });
@@ -160,8 +173,11 @@ function buildCards() {
 function updateProgress() {
   const pct = (memorized.length / TOTAL) * 100;
   document.getElementById('progressFill').style.width = pct + '%';
+  const bar = document.getElementById('progressBar');
+  if (bar) bar.setAttribute('aria-valuenow', Math.round(pct));
   document.getElementById('progressText').textContent = `${memorized.length} / ${TOTAL} memorized`;
-  if (memorized.length === TOTAL) {
+  if (memorized.length === TOTAL && justCompleted) {
+    justCompleted = false;
     setTimeout(() => document.getElementById('completion').classList.add('show'), 400);
   }
 }
@@ -169,6 +185,7 @@ function updateProgress() {
 function toggleMem(idx) {
   if (memorized.includes(idx)) memorized = memorized.filter(i => i !== idx);
   else memorized.push(idx);
+  justCompleted = memorized.length === TOTAL;
   localStorage.setItem('wahdahu_memorized', JSON.stringify(memorized));
   buildCards();
 }
