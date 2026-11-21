@@ -425,6 +425,48 @@
     toast('This dua reset — other lessons unchanged');
   }
 
+  /* ---------- pinned duas ----------
+     One ordered list shared by every page, so the hub can show a managed shelf rather than a
+     separate per-lesson flag that could disagree with the order. */
+  var PIN_KEY = 'si_pins';
+
+  function readPins() {
+    try {
+      var v = JSON.parse(store.get(PIN_KEY) || '[]');
+      if (!Array.isArray(v)) return [];
+      var seen = {};
+      return v.filter(function (s) {
+        if (typeof s !== 'string' || seen[s]) return false;
+        seen[s] = 1;
+        return true;
+      });
+    } catch (e) { return []; }
+  }
+  function writePins(list) {
+    try { store.set(PIN_KEY, JSON.stringify(list)); } catch (e) {}
+  }
+  function updatePinBtn() {
+    var b = $('pinBtn');
+    if (!b) return;
+    var on = readPins().indexOf(L.slug) >= 0;
+    b.textContent = on ? '📌 Pinned' : '📌 Pin';
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    b.classList.toggle('active', on);
+  }
+  function togglePin() {
+    var pins = readPins();
+    var at = pins.indexOf(L.slug);
+    if (at >= 0) {
+      pins.splice(at, 1);
+      toast('Unpinned — removed from My duas');
+    } else {
+      pins.push(L.slug);
+      toast('Pinned — it is now on your hub');
+    }
+    writePins(pins);
+    updatePinBtn();
+  }
+
   function closeCompletion() {
     var c = $('completion');
     if (c) c.classList.remove('show');
@@ -475,6 +517,11 @@
     });
     var dl = $('downloadBtn');
     if (dl) dl.setAttribute('href', 'downloads/' + L.slug + '.zip');
+    var pb = $('pinBtn');
+    if (pb) {
+      updatePinBtn();
+      pb.addEventListener('click', togglePin);
+    }
 
     // the page heading repeats the dua, so in self-test it is blurred too — otherwise the
     // answer sits in plain sight above the test. Tapping the heading reveals it.

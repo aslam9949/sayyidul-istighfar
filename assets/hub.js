@@ -73,6 +73,104 @@
       t = setTimeout(apply, 90);
     });
   }
+  /* ---- pinned duas: ordered shelf with reorder + remove ----
+     Order lives in one list (si_pins). Buttons rather than drag-and-drop: a drag target on a
+     phone-sized row is a reach problem, and a mis-drop would silently reorder someone's duas. */
+  var pinsWrap = document.getElementById('pinnedWrap');
+  var pinsList = document.getElementById('pinnedList');
+  var pinsCount = document.getElementById('pinnedCount');
+  var PIN_KEY = 'si_pins';
+
+  function readPins() {
+    try {
+      var v = JSON.parse(localStorage.getItem(PIN_KEY) || '[]');
+      if (!Array.isArray(v)) return [];
+      var known = LESSONS.map(function (l) { return l.slug; });
+      var seen = {};
+      return v.filter(function (s) {
+        if (typeof s !== 'string' || seen[s] || known.indexOf(s) < 0) return false;
+        seen[s] = 1;
+        return true;
+      });
+    } catch (e) { return []; }
+  }
+  function writePins(list) {
+    try { localStorage.setItem(PIN_KEY, JSON.stringify(list)); } catch (e) {}
+  }
+
+  function pinBtn(label, aria, cls, fn) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'pin-act' + (cls ? ' ' + cls : '');
+    b.textContent = label;
+    b.setAttribute('aria-label', aria);
+    b.addEventListener('click', fn);
+    return b;
+  }
+
+  function renderPins() {
+    if (!pinsWrap || !pinsList) return;
+    var pins = readPins();
+    // mark the main list so a pinned lesson is recognisable in context
+    Array.prototype.slice.call(document.querySelectorAll('.pick')).forEach(function (card) {
+      var on = pins.indexOf(card.dataset.slug) >= 0;
+      card.classList.toggle('is-pinned', on);
+      var star = card.querySelector('.pin-star');
+      if (on && !star) {
+        star = document.createElement('span');
+        star.className = 'pin-star';
+        star.textContent = '📌';
+        card.appendChild(star);
+      } else if (!on && star) {
+        star.remove();
+      }
+    });
+    if (!pins.length) {
+      pinsWrap.classList.remove('show');
+      pinsList.textContent = '';
+      return;
+    }
+    pinsWrap.classList.add('show');
+    if (pinsCount) {
+      pinsCount.textContent = pins.length + (pins.length === 1 ? ' dua' : ' duas');
+    }
+    pinsList.textContent = '';
+    pins.forEach(function (slug, i) {
+      var lesson = LESSONS.filter(function (l) { return l.slug === slug; })[0];
+      if (!lesson) return;
+      var row = document.createElement('div');
+      row.className = 'pin-row';
+      var a = document.createElement('a');
+      a.className = 'pin-link';
+      a.href = slug + '.html';
+      a.textContent = lesson.title;
+      row.appendChild(a);
+      var tools = document.createElement('div');
+      tools.className = 'pin-tools';
+      tools.appendChild(pinBtn('↑', 'Move ' + lesson.title + ' up', 'up', function () {
+        if (i === 0) return;
+        var list = readPins();
+        var at = list.indexOf(slug);
+        if (at > 0) { list.splice(at - 1, 0, list.splice(at, 1)[0]); writePins(list); }
+        renderPins();
+      }));
+      tools.appendChild(pinBtn('↓', 'Move ' + lesson.title + ' down', 'down', function () {
+        var list = readPins();
+        var at = list.indexOf(slug);
+        if (at >= 0 && at < list.length - 1) { list.splice(at + 1, 0, list.splice(at, 1)[0]); writePins(list); }
+        renderPins();
+      }));
+      tools.appendChild(pinBtn('✕', 'Unpin ' + lesson.title, 'rm', function () {
+        var list = readPins().filter(function (s) { return s !== slug; });
+        writePins(list);
+        renderPins();
+        toast('Unpinned ' + lesson.title);
+      }));
+      row.appendChild(tools);
+      pinsList.appendChild(row);
+    });
+  }
+
   /* ---- backup / restore -------------------------------------------------
      Progress lives only in this browser, so clearing site data loses it. A small JSON file is
      enough to move it between devices, and it keeps the privacy promise: no account, no upload. */
@@ -115,6 +213,7 @@
       } catch (e) {}
       out.lessons[l.key] = rec;
     });
+    out.pins = readPins();
     out.last = safeGet('si_last_lesson');
     out.lastSeen = parseInt(safeGet('si_lesson_seen') || '0', 10) || 0;
     return out;
@@ -172,6 +271,10 @@
       total += mem.length;
     });
     var slugs = LESSONS.map(function (l) { return l.slug; });
+    var pins = Array.isArray(raw.pins) ? raw.pins.filter(function (s) {
+      return typeof s === 'string' && slugs.indexOf(s) >= 0;
+    }) : [];
+    clean.pins = pins.filter(function (s, i) { return pins.indexOf(s) === i; });
     clean.last = slugs.indexOf(raw.last) >= 0 ? raw.last : null;
     clean.lastSeen = Number.isInteger(raw.lastSeen) && raw.lastSeen > 0 ? raw.lastSeen : 0;
     clean.count = total;
@@ -194,6 +297,7 @@
         safeSet(k + '_repeat', String(rec.repeat));
         safeSet(k + '_selftest', rec.selftest ? '1' : '0');
       });
+      if (data.pins) writePins(data.pins);
       if (data.last) safeSet('si_last_lesson', data.last);
       if (data.lastSeen) safeSet('si_lesson_seen', String(data.lastSeen));
       toast(written ? 'Restored ' + data.count + ' memorised lines — reloading' : 'Nothing to restore');
@@ -288,4 +392,8 @@
       apply();
     });
   });
+
+  // after every declaration has actually run: the shelf reads pinsWrap/pinsList, and calling this
+  // earlier (before those var assignments execute) silently returned and rendered nothing
+  renderPins();
 })();

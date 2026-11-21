@@ -2,7 +2,7 @@ window.LESSON = {
  "slug": "rahmah",
  "key": "rh",
  "number": 2,
- "total": 8,
+ "total": 19,
  "title": "Allahumma rahmataka arju",
  "arabicTitle": "اللَّهُمَّ رَحْمَتَكَ أَرْجُو",
  "sub": "Allahumma rahmataka arju — the supplication of the one in distress",

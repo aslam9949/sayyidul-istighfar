@@ -2,7 +2,7 @@ window.LESSON = {
  "slug": "ayatul-kursi",
  "key": "ay",
  "number": 8,
- "total": 8,
+ "total": 19,
  "title": "Ayatul Kursi",
  "arabicTitle": "آيَةُ الْكُرْسِيِّ",
  "sub": "Ayatul Kursi — Al-Baqarah 2:255",

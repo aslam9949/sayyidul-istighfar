@@ -2,7 +2,7 @@ window.LESSON = {
  "slug": "hawdi",
  "key": "hw",
  "number": 7,
- "total": 8,
+ "total": 19,
  "title": "Allahumma inni a'udhu bika min al-hamm",
  "arabicTitle": "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ",
  "sub": "The short form: refuge from worry and grief",

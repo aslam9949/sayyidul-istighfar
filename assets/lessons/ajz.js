@@ -2,7 +2,7 @@ window.LESSON = {
  "slug": "ajz",
  "key": "aj",
  "number": 5,
- "total": 8,
+ "total": 19,
  "title": "Allahumma inni a'udhu bika",
  "arabicTitle": "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ",
  "sub": "Allahumma inni a'udhu bika min al-hammi wal-hazan",

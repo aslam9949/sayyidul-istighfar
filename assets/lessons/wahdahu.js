@@ -2,7 +2,7 @@ window.LESSON = {
  "slug": "wahdahu",
  "key": "wh",
  "number": 6,
- "total": 8,
+ "total": 19,
  "title": "La ilaha illallahu wahdahu",
  "arabicTitle": "لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ",
  "sub": "La ilaha illallahu wahdahu la sharika lah",

@@ -2,7 +2,7 @@ window.LESSON = {
  "slug": "istighfar",
  "key": "si",
  "number": 1,
- "total": 8,
+ "total": 19,
  "title": "Sayyidul Istighfar",
  "arabicTitle": "سَيِّدُ الْاسْتِغْفَارِ",
  "sub": "Sayyidul Istighfar — the master of seeking forgiveness",

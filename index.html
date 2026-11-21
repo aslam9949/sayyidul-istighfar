@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Learn duas — line by line — Learn this dua</title>
-<meta name="description" content="Eight duas and one ayah, learned line by line with real audio, transliteration, meaning, the hadith reference and a method for reciting it.">
+<meta name="description" content="19 duas and ayat, learned line by line with real audio, transliteration, meaning, the reference and a method for reciting it.">
 <meta name="theme-color" content="#0d1b2a">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Learn duas — line by line">
-<meta property="og:description" content="Eight duas and one ayah, learned line by line with real audio, transliteration, meaning, the hadith reference and a method for reciting it.">
+<meta property="og:description" content="19 duas and ayat, learned line by line with real audio, transliteration, meaning, the reference and a method for reciting it.">
 <meta name="twitter:card" content="summary">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d1b2a'/%3E%3Cpath d='M16 6l3 7 7 3-7 3-3 7-3-7-7-3 7-3z' fill='%23c9a84c'/%3E%3C/svg%3E">
@@ -19,7 +19,16 @@
 <body>
 <div class="hub-head">
   <h1>تَعَلَّمِ الدُّعَاءَ</h1>
-  <p>Eight separate lessons. Same method: hear one line, read it, say it, mark it memorised. Progress does not mix.</p>
+  <p>19 separate lessons. Same method: hear one line, read it, say it, mark it memorised. Progress does not mix.</p>
+</div>
+
+<div class="pinned" id="pinnedWrap">
+  <div class="pinned-head">
+    <h2>📌 My duas</h2>
+    <span class="pinned-count" id="pinnedCount"></span>
+  </div>
+  <div id="pinnedList"></div>
+  <p class="pinned-hint">Open any dua and tap <b>📌 Pin</b> to keep it here. Use ↑ ↓ to order them.</p>
 </div>
 
 <div class="hub-tools">
@@ -29,7 +38,7 @@
     </svg>
     <input id="search" type="search" placeholder="Search a dua, source or occasion…" aria-label="Search lessons">
   </div>
-  <div class="tag-row"><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="forgiveness">forgiveness</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="morning">morning</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="evening">evening</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="distress">distress</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="mercy">mercy</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="anxiety">anxiety</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="guidance">guidance</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="decisions">decisions</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="short">short</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="provision">provision</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="dignity">dignity</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="work">work</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="debt">debt</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="laziness">laziness</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="dhikr">dhikr</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="reward">reward</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="grief">grief</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="quran">quran</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="protection">protection</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="night">night</button></div>
+  <div class="tag-row"><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="forgiveness">forgiveness</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="morning">morning</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="evening">evening</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="distress">distress</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="mercy">mercy</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="anxiety">anxiety</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="guidance">guidance</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="decisions">decisions</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="short">short</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="provision">provision</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="dignity">dignity</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="work">work</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="debt">debt</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="laziness">laziness</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="dhikr">dhikr</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="reward">reward</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="grief">grief</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="quran">quran</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="protection">protection</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="night">night</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="daily">daily</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="friday">friday</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="salawat">salawat</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="character">character</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="friends">friends</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="trust">trust</button><button class="chip tag-chip" type="button" aria-pressed="false" data-tag="family">family</button></div>
 </div>
 
 <div class="resume" id="resume">
@@ -43,7 +52,7 @@
 </div>
 
 <div class="list" id="list">
-  <a class="pick" href="istighfar.html" data-tags="forgiveness,morning,evening" data-title="sayyidul istighfar sayyidul istighfar — the master of seeking forgiveness sahih al-bukhari 6306 · the prophet ﷺ taught it as the best form of istighfar">
+  <a class="pick" href="istighfar.html" data-slug="istighfar" data-tags="forgiveness,morning,evening" data-title="sayyidul istighfar sayyidul istighfar — the master of seeking forgiveness sahih al-bukhari 6306 · the prophet ﷺ taught it as the best form of istighfar">
     <div class="ring" aria-hidden="true" data-ring="si">
       <svg width="52" height="52" viewBox="0 0 52 52">
         <circle cx="26" cy="26" r="22" fill="none" stroke="#1e2e3e" stroke-width="4"/>
@@ -60,7 +69,7 @@
       <div class="tags"><span>forgiveness</span><span>morning</span><span>evening</span></div>
     </div>
   </a>
-  <a class="pick" href="rahmah.html" data-tags="distress,mercy,anxiety" data-title="allahumma rahmataka arju allahumma rahmataka arju — the supplication of the one in distress sunan abi dawud 5090 · graded hasan by al-albani · hisn al-muslim 123">
+  <a class="pick" href="rahmah.html" data-slug="rahmah" data-tags="distress,mercy,anxiety" data-title="allahumma rahmataka arju allahumma rahmataka arju — the supplication of the one in distress sunan abi dawud 5090 · graded hasan by al-albani · hisn al-muslim 123">
     <div class="ring" aria-hidden="true" data-ring="rh">
       <svg width="52" height="52" viewBox="0 0 52 52">
         <circle cx="26" cy="26" r="22" fill="none" stroke="#1e2e3e" stroke-width="4"/>
@@ -77,7 +86,7 @@
       <div class="tags"><span>distress</span><span>mercy</span><span>anxiety</span></div>
     </div>
   </a>
-  <a class="pick" href="ihdini.html" data-tags="guidance,decisions,short" data-title="allahumma ihdini wa saddidni allahumma ihdini wa saddidni — guide me and make me steadfast sahih muslim 2725 · taught by the prophet ﷺ to ali ibn abi talib (ra)">
+  <a class="pick" href="ihdini.html" data-slug="ihdini" data-tags="guidance,decisions,short" data-title="allahumma ihdini wa saddidni allahumma ihdini wa saddidni — guide me and make me steadfast sahih muslim 2725 · taught by the prophet ﷺ to ali ibn abi talib (ra)">
     <div class="ring" aria-hidden="true" data-ring="ih">
       <svg width="52" height="52" viewBox="0 0 52 52">
         <circle cx="26" cy="26" r="22" fill="none" stroke="#1e2e3e" stroke-width="4"/>
@@ -94,7 +103,7 @@
       <div class="tags"><span>guidance</span><span>decisions</span><span>short</span></div>
     </div>
   </a>
-  <a class="pick" href="habli.html" data-tags="provision,dignity,work" data-title="allahumma hab li hamdan allahumma hab li hamdan — grant me praise and honour athar of sa'd ibn ubadah (ra) · makarim al-akhlaq">
+  <a class="pick" href="habli.html" data-slug="habli" data-tags="provision,dignity,work" data-title="allahumma hab li hamdan allahumma hab li hamdan — grant me praise and honour athar of sa'd ibn ubadah (ra) · makarim al-akhlaq">
     <div class="ring" aria-hidden="true" data-ring="hb">
       <svg width="52" height="52" viewBox="0 0 52 52">
         <circle cx="26" cy="26" r="22" fill="none" stroke="#1e2e3e" stroke-width="4"/>
@@ -111,7 +120,7 @@
       <div class="tags"><span>provision</span><span>dignity</span><span>work</span></div>
     </div>
   </a>
-  <a class="pick" href="ajz.html" data-tags="anxiety,debt,laziness" data-title="allahumma inni a'udhu bika allahumma inni a'udhu bika min al-hammi wal-hazan sahih al-bukhari 6369 · the prophet ﷺ said it often">
+  <a class="pick" href="ajz.html" data-slug="ajz" data-tags="anxiety,debt,laziness" data-title="allahumma inni a'udhu bika allahumma inni a'udhu bika min al-hammi wal-hazan sahih al-bukhari 6369 · the prophet ﷺ said it often">
     <div class="ring" aria-hidden="true" data-ring="aj">
       <svg width="52" height="52" viewBox="0 0 52 52">
         <circle cx="26" cy="26" r="22" fill="none" stroke="#1e2e3e" stroke-width="4"/>
@@ -128,7 +137,7 @@
       <div class="tags"><span>anxiety</span><span>debt</span><span>laziness</span></div>
     </div>
   </a>
-  <a class="pick" href="wahdahu.html" data-tags="dhikr,morning,reward" data-title="la ilaha illallahu wahdahu la ilaha illallahu wahdahu la sharika lah sahih al-bukhari 3293 & 6403 · sahih muslim 2691">
+  <a class="pick" href="wahdahu.html" data-slug="wahdahu" data-tags="dhikr,morning,reward" data-title="la ilaha illallahu wahdahu la ilaha illallahu wahdahu la sharika lah sahih al-bukhari 3293 & 6403 · sahih muslim 2691">
     <div class="ring" aria-hidden="true" data-ring="wh">
       <svg width="52" height="52" viewBox="0 0 52 52">
         <circle cx="26" cy="26" r="22" fill="none" stroke="#1e2e3e" stroke-width="4"/>
@@ -145,7 +154,7 @@
       <div class="tags"><span>dhikr</span><span>morning</span><span>reward</span></div>
     </div>
   </a>
-  <a class="pick" href="hawdi.html" data-tags="anxiety,grief,short" data-title="allahumma inni a'udhu bika min al-hamm the short form: refuge from worry and grief sahih al-bukhari 6369 · said morning and evening">
+  <a class="pick" href="hawdi.html" data-slug="hawdi" data-tags="anxiety,grief,short" data-title="allahumma inni a'udhu bika min al-hamm the short form: refuge from worry and grief sahih al-bukhari 6369 · said morning and evening">
     <div class="ring" aria-hidden="true" data-ring="hw">
       <svg width="52" height="52" viewBox="0 0 52 52">
         <circle cx="26" cy="26" r="22" fill="none" stroke="#1e2e3e" stroke-width="4"/>
@@ -162,7 +171,7 @@
       <div class="tags"><span>anxiety</span><span>grief</span><span>short</span></div>
     </div>
   </a>
-  <a class="pick" href="ayatul-kursi.html" data-tags="quran,protection,night" data-title="ayatul kursi ayatul kursi — al-baqarah 2:255 al-baqarah 2:255 · sahih al-bukhari 2311 · sahih muslim 810">
+  <a class="pick" href="ayatul-kursi.html" data-slug="ayatul-kursi" data-tags="quran,protection,night" data-title="ayatul kursi ayatul kursi — al-baqarah 2:255 al-baqarah 2:255 · sahih al-bukhari 2311 · sahih muslim 810">
     <div class="ring" aria-hidden="true" data-ring="ay">
       <svg width="52" height="52" viewBox="0 0 52 52">
         <circle cx="26" cy="26" r="22" fill="none" stroke="#1e2e3e" stroke-width="4"/>
@@ -177,6 +186,193 @@
       <h2>Ayatul Kursi</h2>
       <div class="meta">Al-Baqarah 2:255 · Sahih al-Bukhari 2311 · Sahih Muslim 810</div>
       <div class="tags"><span>quran</span><span>protection</span><span>night</span></div>
+    </div>
+  </a>
+  <a class="pick" href="baqarah-end.html" data-slug="baqarah-end" data-tags="quran,night,protection" data-title="last two verses of al-baqarah amanar-rasulu — al-baqarah 2:285–286 al-baqarah 2:285–286 · sahih al-bukhari 5009">
+    <div class="ring" aria-hidden="true" data-ring="bq">
+      <svg width="52" height="52" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="22" fill="none" stroke="#1e2e3e" stroke-width="4"/>
+        <circle class="ring-fill" cx="26" cy="26" r="22" fill="none" stroke="#c9a84c" stroke-width="4"
+                stroke-dasharray="138.2" stroke-dashoffset="138.2" stroke-linecap="round"/>
+      </svg>
+      <span class="label">0%</span>
+    </div>
+    <div class="body">
+      <div class="num">Lesson 9 · 2 lines</div>
+      <div class="ar" lang="ar" dir="rtl">آخِرُ سُورَةِ الْبَقَرَة</div>
+      <h2>Last Two Verses of Al-Baqarah</h2>
+      <div class="meta">Al-Baqarah 2:285–286 · Sahih al-Bukhari 5009</div>
+      <div class="tags"><span>quran</span><span>night</span><span>protection</span></div>
+    </div>
+  </a>
+  <a class="pick" href="protection.html" data-slug="protection" data-tags="daily,morning,protection" data-title="morning & evening protection three times in the morning and three in the evening sunan abi dawud 5088 · sahih (al-albani)">
+    <div class="ring" aria-hidden="true" data-ring="pt">
+      <svg width="52" height="52" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="22" fill="none" stroke="#1e2e3e" stroke-width="4"/>
+        <circle class="ring-fill" cx="26" cy="26" r="22" fill="none" stroke="#c9a84c" stroke-width="4"
+                stroke-dasharray="138.2" stroke-dashoffset="138.2" stroke-linecap="round"/>
+      </svg>
+      <span class="label">0%</span>
+    </div>
+    <div class="body">
+      <div class="num">Lesson 10 · 1 lines</div>
+      <div class="ar" lang="ar" dir="rtl">بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ</div>
+      <h2>Morning & Evening Protection</h2>
+      <div class="meta">Sunan Abi Dawud 5088 · Sahih (al-Albani)</div>
+      <div class="tags"><span>daily</span><span>morning</span><span>protection</span></div>
+    </div>
+  </a>
+  <a class="pick" href="salawat.html" data-slug="salawat" data-tags="daily,friday,salawat" data-title="salawat ibrahimiyya the wording the prophet ﷺ taught when asked how to send blessings on him sahih al-bukhari 3370">
+    <div class="ring" aria-hidden="true" data-ring="sw">
+      <svg width="52" height="52" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="22" fill="none" stroke="#1e2e3e" stroke-width="4"/>
+        <circle class="ring-fill" cx="26" cy="26" r="22" fill="none" stroke="#c9a84c" stroke-width="4"
+                stroke-dasharray="138.2" stroke-dashoffset="138.2" stroke-linecap="round"/>
+      </svg>
+      <span class="label">0%</span>
+    </div>
+    <div class="body">
+      <div class="num">Lesson 11 · 1 lines</div>
+      <div class="ar" lang="ar" dir="rtl">الصَّلَاةُ الإِبْرَاهِيمِيَّة</div>
+      <h2>Salawat Ibrahimiyya</h2>
+      <div class="meta">Sahih al-Bukhari 3370</div>
+      <div class="tags"><span>daily</span><span>friday</span><span>salawat</span></div>
+    </div>
+  </a>
+  <a class="pick" href="huda.html" data-slug="huda" data-tags="daily,friday,character" data-title="ask for guidance, piety, chastity, contentment a short, complete ask — and the hour on friday when asking is answered sahih muslim 2721 · sahih al-bukhari 935">
+    <div class="ring" aria-hidden="true" data-ring="hd">
+      <svg width="52" height="52" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="22" fill="none" stroke="#1e2e3e" stroke-width="4"/>
+        <circle class="ring-fill" cx="26" cy="26" r="22" fill="none" stroke="#c9a84c" stroke-width="4"
+                stroke-dasharray="138.2" stroke-dashoffset="138.2" stroke-linecap="round"/>
+      </svg>
+      <span class="label">0%</span>
+    </div>
+    <div class="body">
+      <div class="num">Lesson 12 · 1 lines</div>
+      <div class="ar" lang="ar" dir="rtl">اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى</div>
+      <h2>Ask for Guidance, Piety, Chastity, Contentment</h2>
+      <div class="meta">Sahih Muslim 2721 · Sahih al-Bukhari 935</div>
+      <div class="tags"><span>daily</span><span>friday</span><span>character</span></div>
+    </div>
+  </a>
+  <a class="pick" href="kahf-ten.html" data-slug="kahf-ten" data-tags="quran,friday,protection" data-title="first ten verses of al-kahf friday — and protection from the dajjal al-kahf 18:1–10 · sahih muslim 809">
+    <div class="ring" aria-hidden="true" data-ring="kf">
+      <svg width="52" height="52" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="22" fill="none" stroke="#1e2e3e" stroke-width="4"/>
+        <circle class="ring-fill" cx="26" cy="26" r="22" fill="none" stroke="#c9a84c" stroke-width="4"
+                stroke-dasharray="138.2" stroke-dashoffset="138.2" stroke-linecap="round"/>
+      </svg>
+      <span class="label">0%</span>
+    </div>
+    <div class="body">
+      <div class="num">Lesson 13 · 10 lines</div>
+      <div class="ar" lang="ar" dir="rtl">أَوَّلُ سُورَةِ الْكَهْف</div>
+      <h2>First Ten Verses of Al-Kahf</h2>
+      <div class="meta">Al-Kahf 18:1–10 · Sahih Muslim 809</div>
+      <div class="tags"><span>quran</span><span>friday</span><span>protection</span></div>
+    </div>
+  </a>
+  <a class="pick" href="yunus.html" data-slug="yunus" data-tags="quran,distress" data-title="the dua of yunus al-anbiya 21:87 — said in the belly of the whale al-anbiya 21:87 · jami` at-tirmidhi 3505">
+    <div class="ring" aria-hidden="true" data-ring="yn">
+      <svg width="52" height="52" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="22" fill="none" stroke="#1e2e3e" stroke-width="4"/>
+        <circle class="ring-fill" cx="26" cy="26" r="22" fill="none" stroke="#c9a84c" stroke-width="4"
+                stroke-dasharray="138.2" stroke-dashoffset="138.2" stroke-linecap="round"/>
+      </svg>
+      <span class="label">0%</span>
+    </div>
+    <div class="body">
+      <div class="num">Lesson 14 · 1 lines</div>
+      <div class="ar" lang="ar" dir="rtl">دَعْوَةُ ذِي النُّون</div>
+      <h2>The Dua of Yunus</h2>
+      <div class="meta">Al-Anbiya 21:87 · Jami` at-Tirmidhi 3505</div>
+      <div class="tags"><span>quran</span><span>distress</span></div>
+    </div>
+  </a>
+  <a class="pick" href="hasanah.html" data-slug="hasanah" data-tags="quran,daily,friends" data-title="rabbana atina al-baqarah 2:201 — the most complete short ask al-baqarah 2:201">
+    <div class="ring" aria-hidden="true" data-ring="hs">
+      <svg width="52" height="52" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="22" fill="none" stroke="#1e2e3e" stroke-width="4"/>
+        <circle class="ring-fill" cx="26" cy="26" r="22" fill="none" stroke="#c9a84c" stroke-width="4"
+                stroke-dasharray="138.2" stroke-dashoffset="138.2" stroke-linecap="round"/>
+      </svg>
+      <span class="label">0%</span>
+    </div>
+    <div class="body">
+      <div class="num">Lesson 15 · 1 lines</div>
+      <div class="ar" lang="ar" dir="rtl">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً</div>
+      <h2>Rabbana Atina</h2>
+      <div class="meta">Al-Baqarah 2:201</div>
+      <div class="tags"><span>quran</span><span>daily</span><span>friends</span></div>
+    </div>
+  </a>
+  <a class="pick" href="hasbunallah.html" data-slug="hasbunallah" data-tags="quran,trust,friends" data-title="hasbunallahu wa ni'mal-wakeel ali 'imran 3:173 — said when fear arrives ali 'imran 3:173">
+    <div class="ring" aria-hidden="true" data-ring="hn">
+      <svg width="52" height="52" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="22" fill="none" stroke="#1e2e3e" stroke-width="4"/>
+        <circle class="ring-fill" cx="26" cy="26" r="22" fill="none" stroke="#c9a84c" stroke-width="4"
+                stroke-dasharray="138.2" stroke-dashoffset="138.2" stroke-linecap="round"/>
+      </svg>
+      <span class="label">0%</span>
+    </div>
+    <div class="body">
+      <div class="num">Lesson 16 · 1 lines</div>
+      <div class="ar" lang="ar" dir="rtl">حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيل</div>
+      <h2>Hasbunallahu wa Ni'mal-Wakeel</h2>
+      <div class="meta">Ali 'Imran 3:173</div>
+      <div class="tags"><span>quran</span><span>trust</span><span>friends</span></div>
+    </div>
+  </a>
+  <a class="pick" href="parents.html" data-slug="parents" data-tags="quran,family" data-title="dua for your parents al-isra 17:24 al-isra 17:24">
+    <div class="ring" aria-hidden="true" data-ring="pr">
+      <svg width="52" height="52" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="22" fill="none" stroke="#1e2e3e" stroke-width="4"/>
+        <circle class="ring-fill" cx="26" cy="26" r="22" fill="none" stroke="#c9a84c" stroke-width="4"
+                stroke-dasharray="138.2" stroke-dashoffset="138.2" stroke-linecap="round"/>
+      </svg>
+      <span class="label">0%</span>
+    </div>
+    <div class="body">
+      <div class="num">Lesson 17 · 1 lines</div>
+      <div class="ar" lang="ar" dir="rtl">رَبِّ ارْحَمْهُمَا</div>
+      <h2>Dua for Your Parents</h2>
+      <div class="meta">Al-Isra 17:24</div>
+      <div class="tags"><span>quran</span><span>family</span></div>
+    </div>
+  </a>
+  <a class="pick" href="salawat-ayah.html" data-slug="salawat-ayah" data-tags="quran,friday,salawat" data-title="the command to send salawat al-ahzab 33:56 · with the friday practice al-ahzab 33:56 · sunan abi dawud 1047 (sahih, al-albani)">
+    <div class="ring" aria-hidden="true" data-ring="sy">
+      <svg width="52" height="52" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="22" fill="none" stroke="#1e2e3e" stroke-width="4"/>
+        <circle class="ring-fill" cx="26" cy="26" r="22" fill="none" stroke="#c9a84c" stroke-width="4"
+                stroke-dasharray="138.2" stroke-dashoffset="138.2" stroke-linecap="round"/>
+      </svg>
+      <span class="label">0%</span>
+    </div>
+    <div class="body">
+      <div class="num">Lesson 18 · 1 lines</div>
+      <div class="ar" lang="ar" dir="rtl">إِنَّ اللَّهَ وَمَلَائِكَتَهُ يُصَلُّونَ</div>
+      <h2>The Command to Send Salawat</h2>
+      <div class="meta">Al-Ahzab 33:56 · Sunan Abi Dawud 1047 (Sahih, al-Albani)</div>
+      <div class="tags"><span>quran</span><span>friday</span><span>salawat</span></div>
+    </div>
+  </a>
+  <a class="pick" href="sleep.html" data-slug="sleep" data-tags="daily,night" data-title="before sleep & on waking two lines you say every night and every morning sahih al-bukhari 6324">
+    <div class="ring" aria-hidden="true" data-ring="sl">
+      <svg width="52" height="52" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="22" fill="none" stroke="#1e2e3e" stroke-width="4"/>
+        <circle class="ring-fill" cx="26" cy="26" r="22" fill="none" stroke="#c9a84c" stroke-width="4"
+                stroke-dasharray="138.2" stroke-dashoffset="138.2" stroke-linecap="round"/>
+      </svg>
+      <span class="label">0%</span>
+    </div>
+    <div class="body">
+      <div class="num">Lesson 19 · 2 lines</div>
+      <div class="ar" lang="ar" dir="rtl">أَذْكَارُ النَّوْمِ وَالِاسْتِيقَاظ</div>
+      <h2>Before Sleep & On Waking</h2>
+      <div class="meta">Sahih al-Bukhari 6324</div>
+      <div class="tags"><span>daily</span><span>night</span></div>
     </div>
   </a>
 </div>

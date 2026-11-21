@@ -2,7 +2,7 @@ window.LESSON = {
  "slug": "ihdini",
  "key": "ih",
  "number": 3,
- "total": 8,
+ "total": 19,
  "title": "Allahumma ihdini wa saddidni",
  "arabicTitle": "اللَّهُمَّ اهْدِنِي وَسَدِّدْنِي",
  "sub": "Allahumma ihdini wa saddidni — guide me and make me steadfast",

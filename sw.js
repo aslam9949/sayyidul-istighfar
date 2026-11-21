@@ -1,5 +1,5 @@
 /* Offline shell + audio. CACHE is generated from the shell content at build time. */
-const CACHE = 'duas-6a3db6b6';
+const CACHE = 'duas-46d3fa97';
 /* Audio lives in its own cache with a byte cap: lessons are ~1.6 MB each, so an uncapped
    cache-first policy would grow without limit on a phone. Oldest clips are evicted first. */
 const AUDIO_CACHE = 'duas-audio';
@@ -87,7 +87,29 @@ const SHELL = [
  "hawdi.html",
  "assets/lessons/hawdi.js",
  "ayatul-kursi.html",
- "assets/lessons/ayatul-kursi.js"
+ "assets/lessons/ayatul-kursi.js",
+ "baqarah-end.html",
+ "assets/lessons/baqarah-end.js",
+ "protection.html",
+ "assets/lessons/protection.js",
+ "salawat.html",
+ "assets/lessons/salawat.js",
+ "huda.html",
+ "assets/lessons/huda.js",
+ "kahf-ten.html",
+ "assets/lessons/kahf-ten.js",
+ "yunus.html",
+ "assets/lessons/yunus.js",
+ "hasanah.html",
+ "assets/lessons/hasanah.js",
+ "hasbunallah.html",
+ "assets/lessons/hasbunallah.js",
+ "parents.html",
+ "assets/lessons/parents.js",
+ "salawat-ayah.html",
+ "assets/lessons/salawat-ayah.js",
+ "sleep.html",
+ "assets/lessons/sleep.js"
 ];
 
 self.addEventListener('install', e => {

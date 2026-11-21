@@ -2,7 +2,7 @@ window.LESSON = {
  "slug": "habli",
  "key": "hb",
  "number": 4,
- "total": 8,
+ "total": 19,
  "title": "Allahumma hab li hamdan",
  "arabicTitle": "اللَّهُمَّ هَبْ لِي حَمْدًا",
  "sub": "Allahumma hab li hamdan — grant me praise and honour",
