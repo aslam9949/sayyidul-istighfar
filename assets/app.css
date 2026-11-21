@@ -121,6 +121,7 @@ header .src{font-size:.72rem;margin-top:6px;color:var(--text-dim)}
 .btn-reset{background:transparent;color:var(--red);border:1px solid var(--red);padding:10px 18px;border-radius:20px;
   font-size:.8rem;cursor:pointer;font-family:inherit;margin:24px auto 0;display:block;min-height:42px}
 .btn-reset:hover{background:var(--red);color:#fff}
+.btn-reset.armed{background:var(--red);color:#fff;border-color:#e8b04b}
 .attribution{text-align:center;padding:22px 16px;font-size:.73rem;color:var(--text-mid);max-width:560px;margin:0 auto;line-height:1.6}
 .completion{text-align:center;padding:24px 16px;opacity:0;transform:scale(.94);transition:all .4s;
   pointer-events:none;position:fixed;inset:0;background:rgba(13,27,42,.96);z-index:100;display:flex;

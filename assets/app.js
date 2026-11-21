@@ -358,8 +358,39 @@
     toast('Full dua — one clip per line');
   }
 
+  var resetArmed = 0;
+
   function resetProgress() {
-    if (!confirm('Reset memorization for this dua only?')) return;
+    var btn = $('resetBtn');
+    // Native confirm() blocks in-app browsers (and can leave a page unresponsive), so the button
+    // itself asks for a second tap, then disarms after a few seconds.
+    if (!resetArmed) {
+      resetArmed = Date.now();
+      if (btn) {
+        btn.textContent = '⚠️ Tap again to reset';
+        btn.classList.add('armed');
+      }
+      toast('Tap again to reset this dua');
+      setTimeout(function () {
+        if (resetArmed) {
+          resetArmed = 0;
+          if (btn) {
+            btn.textContent = '↺ Reset progress';
+            btn.classList.remove('armed');
+          }
+        }
+      }, 5000);
+      return;
+    }
+    if (Date.now() - resetArmed > 5000) {
+      resetArmed = 0;
+      return resetProgress();
+    }
+    resetArmed = 0;
+    if (btn) {
+      btn.textContent = '↺ Reset progress';
+      btn.classList.remove('armed');
+    }
     state.memorized = [];
     state.review = {};
     save();
