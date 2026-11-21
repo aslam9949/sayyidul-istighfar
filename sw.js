@@ -1,5 +1,5 @@
 /* Offline shell + audio. CACHE is generated from the shell content at build time. */
-const CACHE = 'duas-c0ec219c';
+const CACHE = 'duas-6a3db6b6';
 /* Audio lives in its own cache with a byte cap: lessons are ~1.6 MB each, so an uncapped
    cache-first policy would grow without limit on a phone. Oldest clips are evicted first. */
 const AUDIO_CACHE = 'duas-audio';

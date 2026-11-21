@@ -246,12 +246,26 @@
   }
 
   if ('serviceWorker' in navigator) {
+    // the hub is often the first page someone opens, and registration used to live only in
+    // app.js — so the worker was never installed until a lesson was visited, leaving offline
+    // unavailable and this note stuck on "checking…"
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js').catch(function () {});
+    });
     navigator.serviceWorker.addEventListener('message', function (e) {
       if (e.data && e.data.type === 'audio-stats') renderAudio(e.data);
     });
     navigator.serviceWorker.ready.then(function () {
       setTimeout(function () { swPost({ type: 'audio-stats' }); }, 400);
     }).catch(function () {});
+    // if no answer arrives, say something useful rather than sitting on "checking…"
+    setTimeout(function () {
+      if (offlineNote && /checking/.test(offlineNote.textContent)) {
+        offlineNote.textContent = 'Offline audio: play a dua once to keep it for offline.';
+      }
+    }, 4000);
+  } else if (offlineNote) {
+    offlineNote.textContent = 'This browser does not support offline mode.';
   }
 
   if (clearAudioBtn) {
