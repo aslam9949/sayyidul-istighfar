@@ -1,5 +1,5 @@
 /* Offline shell + audio. Bump CACHE when the shell changes. */
-const CACHE = 'duas-v4';
+const CACHE = 'duas-v5';
 const SHELL = [
  "index.html",
  "assets/app.css",

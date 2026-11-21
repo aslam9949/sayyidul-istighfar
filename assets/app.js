@@ -96,6 +96,14 @@
     if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'paused';
   }
 
+  function resetPlayAll() {
+    var btn = $('playAll');
+    if (btn) {
+      btn.textContent = '🔊 Play Full Dua';
+      btn.setAttribute('aria-pressed', 'false');
+    }
+  }
+
   function setMediaSession(title) {
     if (!('mediaSession' in navigator)) return;
     try {
@@ -342,7 +350,12 @@
 
   function playFull() {
     playQueue(allIndices(), 0, L.title + ' — full');
-    toast('Full recitation — one take per line');
+    var btn = $('playAll');
+    if (btn) {
+      btn.textContent = '⏸ Playing full dua';
+      btn.setAttribute('aria-pressed', 'true');
+    }
+    toast('Full dua — one clip per line');
   }
 
   function resetProgress() {
