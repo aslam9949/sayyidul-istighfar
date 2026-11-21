@@ -182,7 +182,15 @@
 </div>
 <p class="empty" id="empty">Nothing matches that search.</p>
 
-<p class="note">Installed on your phone this works offline. Progress is stored on your device only — nothing is uploaded anywhere.</p>
+<div class="data-tools">
+  <button class="chip" id="backupBtn" type="button">⤓ Back up progress</button>
+  <button class="chip" id="restoreBtn" type="button">⤒ Restore</button>
+  <input id="restoreFile" type="file" accept="application/json,.json" hidden>
+  <button class="chip" id="clearAudioBtn" type="button">🧹 Clear offline audio</button>
+</div>
+<p class="note" id="offlineNote">Offline audio: checking…</p>
+
+<p class="note">Installed on your phone this works offline. Progress is stored on your device only — nothing is uploaded anywhere. Back up downloads a small JSON file you can restore on another device.</p>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
