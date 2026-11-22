@@ -394,6 +394,8 @@
         c.classList.toggle('active', isOn);
         c.setAttribute('aria-pressed', isOn ? 'true' : 'false');
       });
+      // the row scrolls sideways on a phone: bring the chip the user just tapped into view
+      if (chip.scrollIntoView) chip.scrollIntoView({ block: 'nearest', inline: 'center' });
       apply();
     });
   });

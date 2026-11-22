@@ -202,7 +202,10 @@ header .src{font-size:.72rem;margin-top:6px;color:var(--text-dim)}
 @media (max-width:520px){
   /* keep the occasion chips on one tidy, swipeable row instead of ragged wrapped lines */
   .tag-row{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding-bottom:4px;
-    scrollbar-width:none;-webkit-overflow-scrolling:touch}
+    scrollbar-width:none;-webkit-overflow-scrolling:touch;
+    /* fade the right edge so it reads as "more chips over there" instead of a cut-off row */
+    mask-image:linear-gradient(to right, #000 calc(100% - 30px), transparent);
+    -webkit-mask-image:linear-gradient(to right, #000 calc(100% - 30px), transparent)}
   .tag-row::-webkit-scrollbar{display:none}
   .tag-row .chip{flex:0 0 auto}
 }
